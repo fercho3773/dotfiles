@@ -1,0 +1,13 @@
+[language-server.tinymist]
+command = "tinymist"
+
+[language-server.tinymist.config]
+exportPdf = "OnSave"
+outputPath = "$root/$dir/$name"
+
+[[language]]
+name = "typst"
+language-servers = ["tinymist"]
+file-types = ["typst", "typ"]
+comment-token = "//"
+indent = { tab-width = 2, unit = "  " }

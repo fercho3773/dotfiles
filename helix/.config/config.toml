@@ -1,0 +1,22 @@
+
+theme = "base16_transparent"
+
+[editor]
+line-number = "relative"    
+mouse = true
+text-width = 120
+
+[editor.cursor-shape]
+insert = "block"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.soft-wrap]
+enable = true
+wrap-at-text-width = true
+
+[keys.normal]
+C-s = ":write"

@@ -1,0 +1,27 @@
+##
+##
+##
+[general]
+mode = viewer
+position = parent
+size = parent ## fullscreen-parent-image
+decoration = no ## yes-no
+sigusr1 = reload
+app_id = swayimg
+
+[font]
+name = monospace
+size = 12pt
+background = #00000000
+
+[info]
+show = yes
+info_timeout = 2
+status_timeout = 2
+
+[viewer]
+scale = fit
+keep_zoom = no
+slideshow = no
+preload = 1
+history = 1

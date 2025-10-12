@@ -1,0 +1,118 @@
+{
+// Hyperland
+"layer": "top",
+"position": "top",
+"spacing": 10,
+
+"margin-bottom": 0,
+"margin-top": 0,
+
+"modules-left": [
+	"tray",
+	"custom/rofi",
+	"custom/power",
+	"idle_inhibitor"
+	],
+"modules-center": [
+	"hyprland/workspaces"
+	],
+"modules-right": [
+	"network",
+	"temperature",
+	"backlight",
+	"pulseaudio",
+	"clock",
+	"battery"
+	],
+"custom/rofi": {
+	"format": "<span ></span>",
+	"on-click": "rofi -show drun -disable-history -no-show-icons",
+	"escape" : true,
+	"tooltip" : false
+	},
+"pulseaudio": {
+	"max-volume": 110,
+	"tooltip": false,
+	"format": "{icon} {volume}%",
+	"format-muted": "MUTE",
+	"format-icons": {
+		"default": ["<span></span>", "<span></span>", "<span></span> "],
+		"headset": "<span>\u00A0</span>",
+		"headphone": "<span>\u00A0</span>"
+	}
+},
+"network": {
+	"format-wifi": "OK <span></span>",
+	"format-ethernet": "ETH",
+	"format-linked": "{ifname} (No IP)",
+	"format-disconnected": "DISCONNECTED",
+	"format-alt": "{ifname}: {ipaddr}/{cidr}"
+},
+"backlight": {
+	"tooltip": false,
+	"format": " {}%",
+	"interval":300
+},
+"battery": {
+	"interval":180,
+        "states": {
+            "good": 60,
+            "warning": 35,
+            "critical": 25
+        },
+        "format": "{icon}  {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+},
+"tray":{
+	"icon-size":18,
+	"spacing": 10
+},
+"clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%m-%a-%d, %Y (%R)}"
+},
+"custom/power":{
+    "format": "<span size='18250'>⏻</span>",
+        "interval": "once",
+	      "on-click": "wlogout"
+},
+"idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": "<span></span>",
+        "deactivated": "<span></span>"
+    }
+},
+"hyprland/workspaces": {
+	"disable-scroll": true,
+	"active-only": false,
+	"all-outputs": true,
+	"on-click": "activate",
+	"format": "{icon}",
+	"format-icons":{
+		"1": "<span></span>",
+		"2": "<span></span>",
+		"3": "<span></span>",
+		"4": "<span></span>",
+		"5": "<span></span>",
+		"6": "<span></span>",
+		"7": "<span></span>",
+		"8": "<span></span>",
+		"9": "<span></span>",
+		"empty": "<span></span>",
+		"urgent": "<span></span>",
+		"focused": "<span></span>",
+		"default": "<span></span>"
+		},
+	"persistent-workspaces": {
+		"*": [1,2,3,4,5,6,7,8,9]
+		},
+	"sort-by-number": true
+	},
+"hyprland/window":{
+	"icon":false,
+	}
+}

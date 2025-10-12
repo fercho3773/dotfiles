@@ -1,0 +1,42 @@
+# riverWM April 2025
+# monitor
+riverctl set-monitor 1920x1200@60
+
+# modkey
+mod="Mod1"
+mod1="Mod4"
+
+# environment
+export XCURSOR_SIZE=24
+export XDG_CURRENT_DESKTUP=river
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=river
+
+# startup
+dbus-update-activation-environment --systemd XCURSOR_THEME XCURSOR_SIZE DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+# input
+riverctl set-repeat 100 300
+riverctl focus-follow-cursor normal
+
+
+# keybinds
+riverctl map normal $mod Return spawn foot
+riverctl map normal $mod P toggle-float
+riverctl map normal $mod F toggle-fullscreen
+riverctl map normal $mod Q close
+riverctl map normal $mod E spawn dolphin
+riverctl map normal $mod Space spawn 'rofi -show drun -no-show-icons'
+
+## pass-normal
+riverctl map normal $mod G enter-mode passthrough
+riverctl map passthrough $mod G enter-mode normal
+
+## laptop keys
+riverctl map normal None XF86AudioRaiseVolume spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+'
+riverctl map normal None XF86AudioLowerVolume spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-'
+riverctl map normal None XF86AudioMute spawn 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'
+riverctl map normal None XF86AudioMicMute spawn 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'
+riverctl map normal None XF86MonBrightnessUp spawn 'brightnessctl set 2%+'
+riverctl map normal None XF86MonBrightnessDown spawn 'brightness ctl set 2%- -n 1'
+
