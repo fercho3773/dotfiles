@@ -1,0 +1,97 @@
+/*            Common CSS            */
+*{
+  border: none;
+  border-radius: 2px;
+  font-size: 20px;
+  font-family: "Terminess Nerd Font Mono Bold";
+  min-height: 12px;
+  color: white;
+  padding: 1px;
+}
+
+window#waybar{
+  background: none;
+  margin: 0px;
+}
+
+.modules-right {
+  padding: 0 12px;
+  border-radius: 8px 8px 8px 8px;
+  margin-top: 3px;
+  margin: 0 25px;
+  background: #000000;
+}
+
+.modules-center {
+  padding: 0 8px;
+  margin-top: 2px;
+  border-radius: 4px 4px 4px 4px;
+  background: #000000;
+}
+
+.modules-left {
+  padding: 0 12px;
+  border-radius: 8px 8px 8px 8px;
+  margin-top: 2px;
+  margin: 2px 25px;
+  background: #000000;
+}
+
+#battery,
+#battery.charging {
+    color: #33FF66;
+}
+
+#battery.warning:not(.charging) {
+    color: #FFC300;
+}
+
+#battery.critical:not(.charging) {
+    color: #FF5733;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#backlight,
+#clock {
+  padding: 0.5px
+}
+#custom-rofi,
+#custom-power{
+  font-size: 18px
+}
+#idle_inhibitor,
+#network{
+  color:white;
+  padding: 4 8px;
+}
+#pulseaudio{
+  color:white
+}
+#pulseaudio.muted{
+  color: #FF5733 
+}
+#temperature,
+#temperature.critical,
+#tray,
+#window,
+
+/* Workspaces Module  */
+#workspaces button {
+  border-radius: 0px;
+}
+
+#workspaces button.active {
+    border-bottom: solid 2px @active;
+}
+
+/* Misc */
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
