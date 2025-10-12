@@ -1,4 +1,0 @@
-  timeout 240 'swaylock --image ~/Pictures/Wallpapers/snowforest.jpg --indicator-caps-lock --daemonize' \
-  timeout 250 'if pgrep swaylock; then hyprctl dispatch dpms off; fi' \
-  resume 'hyprctl dispatch dpms on' \
-  before-sleep 'swaylock --image ~/Pictures/Wallpapers/snowforest.jpg --indicator-caps-lock --daemonize'
