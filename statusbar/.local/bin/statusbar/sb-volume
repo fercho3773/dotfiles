@@ -9,7 +9,8 @@
 #esac
 
 vol="$(amixer get Master | awk -F'[][]' '/%/{print $2; exit}' | tr -d '%')"
-vmute="$(amixer get Master | awk -F'[][]' '/%/{print $4; exit}')"
+#vmute="$(amixer get Master | awk -F'[][]' '/%/{print $4; exit}')"
+vmute="$(amixer get Master | awk -F'[][]' '/%/{print $6; exit}')"
 
 # If muted, print MUTE and exit.
 [ "$vmute" = "off" ] && echo "MUTE" && exit
