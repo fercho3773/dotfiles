@@ -10,4 +10,3 @@ case $BLOCK_BUTTON in
 esac
 
 sensors | awk '/Core 0/ {print "" $3}'
-

@@ -1,12 +1,4 @@
-#!/bin/dash
-
-#case $BLOCK_BUTTON in
-#	1) setsid -w -f "$TERMINAL" -e pulsemixer; pkill -RTMIN+10 "${STATUSBAR:-dwmblocks}" ;;
-#	2) wpctl set-mute @DEFAULT_SINK@ toggle ;;
-#	3) wpctl set-volume @DEFAULT_SINK@ 2%+ --limit 1.1 ;;
-#	4) wpctl set-volume @DEFAULT_SINK@ 2%- ;;
-#	5) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
-#esac
+#!/bin/bash
 
 vol="$(amixer get Master | awk -F'[][]' '/%/{print $2; exit}' | tr -d '%')"
 #vmute="$(amixer get Master | awk -F'[][]' '/%/{print $4; exit}')"
@@ -14,14 +6,6 @@ vmute="$(amixer get Master | awk -F'[][]' '/%/{print $6; exit}')"
 
 # If muted, print MUTE and exit.
 [ "$vmute" = "off" ] && echo "MUTE" && exit
-
-#vol="${vol#Volume: }"
-
-#split() { # For ommiting the . without calling and external program.
-#	IFS=$2
-#	set -- $1
-#	printf '%s' "$@"
-#}
 
 volprint="$(printf $vol  )"
 
