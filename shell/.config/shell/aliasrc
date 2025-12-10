@@ -4,9 +4,8 @@
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 # Use $XINITRC variable if file exists.
-[ -f "$XINITRC" ] && alias startx='startx $XINITRC'
-
-[ -f "$MBSYNCRC" ] && alias mbsync='mbsync -c $MBSYNCRC'
+#[ -f "$XINITRC" ] && alias startx='startx $XINITRC'
+#[ -f "$MBSYNCRC" ] && alias mbsync='mbsync -c $MBSYNCRC'
 
 # sudo not required for some system commands
 for command in mount umount sv pacman updatedb su shutdown poweroff reboot ; do
@@ -18,17 +17,21 @@ se() {
 	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
 	}
 
+# hehehe
+alias \
+  top="btop" \
+  fetch="fastfetch" \
+  tw="typst watch --pdf-standard 1.5" \
+  yta='yt-dlp -x -f 251 --embed-metadata --embed-thumbnail --no-playlist'
+
+
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
 	cp="cp -iv" \
 	mv="mv -iv" \
 	rm="rm -vI" \
 	bc="bc -ql" \
-	rsync="rsync -vrPlu" \
 	mkd="mkdir -pv" \
-	yt="yt-dlp --embed-metadata -i" \
-	yta="yt -x -f bestaudio/best" \
-	ytt="yt --skip-download --write-thumbnail" \
 	ffmpeg="ffmpeg -hide_banner"
 
 # Colorize commands when possible.
@@ -44,17 +47,12 @@ alias \
 	ka="killall" \
 	g="git" \
 	trem="transmission-remote" \
-	YT="youtube-viewer" \
-	sdn="shutdown -h now" \
 	e='$EDITOR' \
 	v='$EDITOR' \
-	p="pacman" \
 	xi="sudo xbps-install" \
 	xr="sudo xbps-remove -R" \
 	xq="xbps-query" \
 	z="zathura"
 
 alias \
-	lf="lfub" \
-	magit="nvim -c MagitOnly" \
 	ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutenvrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc'

@@ -6,6 +6,8 @@ emulate sh -c 'source /etc/profile' # POSIX sh
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/statusbar/:$PATH"
 
+# texlive
+export PATH="/opt/texlive/2018/bin/x86_64-linux/:$PATH"
 
 # Add all directories in `~/.local/bin` to $PATH
 export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
@@ -13,7 +15,8 @@ export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
 unsetopt PROMPT_SP 2>/dev/null
 
 # Default programs:
+export IMGVIEWER="feh"
 export EDITOR="nvim"
 export TERMINAL="st"
 export TERMINAL_PROG="st"
-export BROWSER="librewolf"
+export BROWSER="firefox"

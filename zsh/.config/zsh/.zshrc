@@ -45,10 +45,9 @@ NEWLINE=$'\n'
 
 # Load aliases and shortcuts if existent.
 # Environment variables in ~/.zprofile
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/var" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/var"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile"
 
 # Fish-like syntax highlighting and autosuggestions and history
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
