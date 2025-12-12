@@ -1,5 +1,5 @@
 # dotfiles
-Various configuration files for my rice on my linux desktop.
+Various configuration files for my linux desktop rice.
 
 ---
 
