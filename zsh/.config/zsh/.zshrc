@@ -1,6 +1,6 @@
 #### Config file for the z shell, zoomer shell lmao
-SAVEHIST=500000
-HISTSIZE=500000
+SAVEHIST=9900000
+HISTSIZE=9900000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 
 zmodload zsh/complist
@@ -53,9 +53,3 @@ NEWLINE=$'\n'
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-# TODO: fuzzy search
-#
-#
-#
-#
