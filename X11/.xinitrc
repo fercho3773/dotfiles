@@ -4,7 +4,7 @@ xclip &
 picom &
 # xcompmgr &
 setxkbmap -layout 'es' &
-xset -r rate 100 40 &
+xset -r rate 180 30 &
 
 dunst & 
 dwmblocks &
