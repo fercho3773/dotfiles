@@ -1,0 +1,7 @@
+*.lua linguist-detectable=false
+*.sh linguist-detectable=false
+*.bash linguist-detectable=false
+*.zsh linguist-detectable=false
+*.hc linguist-language=HolyC
+
+
