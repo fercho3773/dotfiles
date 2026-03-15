@@ -17,6 +17,16 @@ se() {
 	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
 	}
 
+# tmux stuff
+tmux () {
+    if [ "$1" = "as" ]; then
+        shift
+        command tmux attach-session -t "$@"
+    else
+        command tmux "$@"
+    fi
+}
+
 # hehehe
 alias \
   top="btop" \
