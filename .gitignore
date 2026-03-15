@@ -41,6 +41,7 @@ gnupg/private-keys-v1.d/
 *.log
 tmp/
 cache/
+*.cache
 
 # Local machine overrides
 *.local
