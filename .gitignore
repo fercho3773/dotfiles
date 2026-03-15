@@ -1,0 +1,51 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# swaps
+*.swo
+*~
+.vscode/
+.idea/
+
+# Neovim local files
+nvim/.local/
+nvim/.cache/
+nvim/.shada/
+nvim/plugin/packer_compiled.lua
+nvim/lazy-lock.json
+
+# Vim 
+vim/.viminfo
+vim/.swap/
+vim/.undo/
+vim/.backup/
+
+# zoomer shell lmaoo
+zsh/.zcompdump*
+zsh/.zsh_history
+zsh/.zsh_sessions/
+
+# Tmux
+tmux/.tmux/resurrect/
+tmux/.tmux/continuum/
+
+# SSH (never commit keys)
+ssh/id_*
+ssh/*.pub
+
+# GnuPG
+gnupg/private-keys-v1.d/
+
+# Logs / temp
+*.log
+tmp/
+cache/
+
+# Local machine overrides
+*.local
+local/
+*/.local/state/
+*/.local/share/
+
+
