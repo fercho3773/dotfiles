@@ -1,12 +1,14 @@
 #! /bin/zsh
 
 xclip &
-xcompmgr &
+picom &
+# xcompmgr &
 setxkbmap -layout 'es' &
 xset -r rate 180 30 &
 
 dunst & 
 dwmblocks &
+xss-lock -- slock &
 
 #pipewire &
 #pipewire-pulse &

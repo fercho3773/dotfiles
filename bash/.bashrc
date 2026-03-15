@@ -52,3 +52,5 @@ netinfo ()
 
 
 
+
+source /home/fercho/.config/broot/launcher/bash/br

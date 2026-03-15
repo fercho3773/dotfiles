@@ -14,6 +14,9 @@ setopt globdots # include dotfiles
 setopt interactive_comments # allow comments in zshell 
 stty stop undef # disables terminal freezing ctrl-s
 
+# zoxide
+eval "$(zoxide init zsh)"
+
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
