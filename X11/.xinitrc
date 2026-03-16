@@ -9,6 +9,7 @@ xset -r rate 180 30 &
 dunst & 
 dwmblocks &
 xss-lock -- slock &
+xhidecursor &
 
 #pipewire &
 #pipewire-pulse &
