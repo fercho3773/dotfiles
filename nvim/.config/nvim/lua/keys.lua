@@ -7,8 +7,13 @@ vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highl
 
 -- g + h, To enter normal mode
 vim.api.nvim_set_keymap('i', 'gh', '<Esc>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
 
--- Y to EOL
+-- Save :W, with Leader + s
+vim.api.nvim_set_keymap('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-s>', '<Esc>:w<CR>a', { noremap = true, silent = true })
+
+-- Yank to the 'end of line'.
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
 
 -- Center screen when jumping
