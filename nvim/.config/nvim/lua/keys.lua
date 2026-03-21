@@ -5,6 +5,9 @@ vim.g.maplocalleader = " "                         -- Set local leader key (NEW)
 -- Normal mode mappings
 vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
 
+-- g + h, To enter normal mode
+vim.api.nvim_set_keymap('i', 'gh', '<Esc>', { noremap = true, silent = true })
+
 -- Y to EOL
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
 
