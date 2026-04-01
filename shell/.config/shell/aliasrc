@@ -43,7 +43,7 @@ alias \
   top="btop" \
   fetch="fastfetch" \
   tw="typst watch --pdf-standard 1.5" \
-  yta="yt-dlp -x -f 251 --embed-metadata --embed-thumbnail --no-playlist" \ 
+  yta="yt-dlp -x -f 251 --embed-metadata --embed-thumbnail --no-playlist" \
   openpdf="zathura main.pdf"
 
 

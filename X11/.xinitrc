@@ -1,8 +1,8 @@
 #! /bin/zsh
 
 xclip &
-picom &
-# xcompmgr &
+# picom &
+xcompmgr &
 setxkbmap -layout 'es' &
 xset -r rate 180 30 &
 
