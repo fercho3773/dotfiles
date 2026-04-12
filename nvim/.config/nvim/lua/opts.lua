@@ -5,7 +5,7 @@ vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
 -- BuiltIn File Tree
-vim.g.netrw_list_style = 3
+-- vim.g.netrw_list_style = 3
 
 -- Basic settings
 vim.opt.number = true                              -- Line numbers
