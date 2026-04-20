@@ -44,6 +44,7 @@ alias \
   fetch="fastfetch" \
   tw="typst watch --pdf-standard 1.5" \
   yta="yt-dlp -x -f 251 --embed-metadata --embed-thumbnail --no-playlist" \
+  mylatex="latexmk -pdf -pvc -auxdir=temp -outdir=. main.tex"\
   openpdf="zathura main.pdf"
 
 

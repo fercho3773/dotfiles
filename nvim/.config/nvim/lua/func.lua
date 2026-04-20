@@ -1,4 +1,5 @@
--- USEFUL FUNCTIONS
+-- Reload Config
+vim.api.nvim_create_user_command('ReloadConfig', 'source $MYVIMRC', {})
 
 -- Copy Full File-Path
 vim.keymap.set("n", "<leader>pa", function()
@@ -101,8 +102,8 @@ vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
 vim.opt.diffopt:append("linematch:60")
 
 -- Performance improvements
-vim.opt.redrawtime = 10000
-vim.opt.maxmempattern = 20000
+vim.opt.redrawtime = 5000
+vim.opt.maxmempattern = 15000
 
 -- Create undo directory if it doesn't exist
 local undodir = vim.fn.expand("~/.vim/undodir")

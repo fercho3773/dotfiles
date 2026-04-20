@@ -5,7 +5,9 @@ vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
 -- BuiltIn File Tree
--- vim.g.netrw_list_style = 3
+vim.g.netrw_list_style = 3
+vim.g.netrw_winsize = 30
+
 
 -- Basic settings
 vim.opt.number = true                              -- Line numbers
@@ -52,8 +54,8 @@ vim.opt.writebackup = false                        -- Don't create backup before
 vim.opt.swapfile = false                           -- Don't create swap files
 vim.opt.undofile = true                            -- Persistent undo
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir")  -- Undo directory
-vim.opt.updatetime = 300                           -- Faster completion
-vim.opt.timeoutlen = 500                           -- Key timeout duration
+vim.opt.updatetime = 100                           -- Faster completion
+vim.opt.timeoutlen = 100                           -- Key timeout duration
 vim.opt.ttimeoutlen = 0                            -- Key code timeout
 vim.opt.autoread = true                            -- Auto reload files changed outside vim
 vim.opt.autowrite = false                          -- Don't auto save
