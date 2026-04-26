@@ -37,3 +37,24 @@ window#waybar {
   padding: 0 10px;
   color: #bbbbbb;
 }
+
+#clock,
+#custom-sep,
+#battery,
+#cpu,
+#memory,
+#disk,
+#network,
+#tray {
+    padding: 0 8px;
+    color: @white;
+}
+
+#custom-sep {
+    color: @brblk;
+}
+
+
+
+
+

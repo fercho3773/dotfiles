@@ -4,16 +4,16 @@ xclip &
 # picom &
 xcompmgr &
 setxkbmap -layout 'es' &
-xset -r rate 180 30 &
+xset -r rate 125 40 &
 
 dunst & 
 dwmblocks &
 xss-lock -- slock &
 xhidecursor &
 
-#pipewire &
-#pipewire-pulse &
-#wireplumber &
+pipewire &
+pipewire-pulse &
+wireplumber &
 
 feh --bg-scale $WALLPAPER &
 brightnessctl s 14% &
