@@ -43,14 +43,3 @@ netinfo ()
 	/sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
 	echo "---------------------------------------------------"
 }
-
-
-
-
-
-
-
-
-
-
-source /home/fercho/.config/broot/launcher/bash/br

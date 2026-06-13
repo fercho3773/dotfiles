@@ -1,7 +1,9 @@
 #### Config file for the z shell, zoomer shell lmao
-SAVEHIST=9900000
-HISTSIZE=9900000
+SAVEHIST=99000000
+HISTSIZE=99000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
+
+alias reloadzsh="source ~/.zshrc"
 
 zmodload zsh/complist
 autoload -U compinit && compinit
@@ -13,6 +15,11 @@ setopt auto_param_slash # add a "/" instead of treadline on dirs
 setopt globdots # include dotfiles
 setopt interactive_comments # allow comments in zshell 
 stty stop undef # disables terminal freezing ctrl-s
+
+# dirs
+..() { cd ..; ls }
+...() { cd ../..; ls }
+....() { cd ../../..; ls }
 
 # zoxide
 eval "$(zoxide init zsh)"

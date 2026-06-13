@@ -8,9 +8,22 @@
 #[ -f "$MBSYNCRC" ] && alias mbsync='mbsync -c $MBSYNCRC'
 
 # sudo not required for some system commands
-for command in mount umount sv pacman updatedb su shutdown poweroff reboot ; do
+for command in mount umount sv pacman updatedb su shutdown poweroff reboot vpm ; do
 	alias $command="sudo $command"
 done; unset command
+
+netinfo ()
+{
+	echo "--------------- Network Information ---------------"
+	/sbin/ifconfig | awk /'inet addr/ {print $2}'
+	echo ""
+	/sbin/ifconfig | awk /'Bcast/ {print $3}'
+	echo ""
+	/sbin/ifconfig | awk /'inet addr/ {print $4}'
+
+	/sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
+	echo "---------------------------------------------------"
+}
 
 se() {
 	choice="$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)"
@@ -19,12 +32,23 @@ se() {
 
 # tmux stuff
 tmux () {
-    if [ "$1" = "as" ]; then
-        shift
-        command tmux attach-session -t "$@"
-    else
-        command tmux "$@"
-    fi
+    case "$1" in
+        "as")
+            shift
+            command tmux attach-session -t "$@"
+            ;;
+        "ks")
+            shift
+            command tmux kill-session -t "$@"
+            ;;
+        "ns")
+            shift
+            command tmux new-session -s "$@"
+            ;;
+        *)
+            command tmux "$@"
+            ;;
+    esac
 }
 
 # Extract archives considering the file extension
@@ -44,11 +68,16 @@ alias \
   fetch="fastfetch" \
   tw="typst watch --pdf-standard 1.5" \
   yta="yt-dlp -x -f 251 --embed-metadata --embed-thumbnail --no-playlist" \
-  mylatex="latexmk -pdf -pvc -auxdir=temp -outdir=. main.tex"\
-  openpdf="zathura main.pdf"
+  mylatex="latexmk -pdf -pvc -auxdir=temp -outdir=. main.tex"\
+  pdf="zathura main.pdf"
 
+#xbps
+alias \
+  xin="sudo xbps-install" \
+  xre="sudo xbps-remove -R" \
+  xcl="sudo xbps-remove -Oo"
 
-# Verbosity and settings that you pretty much just always are going to want.
+# Verbosity
 alias \
 	cp="cp -iv" \
 	mv="mv -iv" \
@@ -69,12 +98,8 @@ alias \
 alias \
 	ka="killall" \
 	g="git" \
-	trem="transmission-remote" \
 	e='$EDITOR' \
 	v='$EDITOR' \
-	xi="sudo xbps-install" \
-	xr="sudo xbps-remove -R" \
-	xq="xbps-query" \
 	z="zathura"
 
 alias \

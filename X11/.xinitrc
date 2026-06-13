@@ -1,7 +1,6 @@
-#! /bin/zsh
+#! /bin/sh
 
 xclip &
-# picom &
 xcompmgr &
 setxkbmap -layout 'es' &
 xset -r rate 125 40 &
@@ -11,15 +10,13 @@ dwmblocks &
 xss-lock -- slock &
 xhidecursor &
 
-pipewire &
-pipewire-pulse &
-wireplumber &
+#pipewire &
+#/usr/bin/pipewire-pulse &
+#/usr/bin/wireplumber &
 
-feh --bg-scale $WALLPAPER &
-brightnessctl s 14% &
-sct 2400 &
-# redshift -t 2800:3750 -l 40:70 &
-# wal --theme base16-gruvbox-hard --saturate 1.0 -l
+xwallpaper --zoom ~/wall.jpg &
+brightnessctl s 20% &
+sct 3200 &
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
