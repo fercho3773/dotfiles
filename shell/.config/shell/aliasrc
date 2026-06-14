@@ -8,9 +8,23 @@
 #[ -f "$MBSYNCRC" ] && alias mbsync='mbsync -c $MBSYNCRC'
 
 # sudo not required for some system commands
-for command in mount umount sv pacman updatedb su shutdown poweroff reboot vpm ; do
-	alias $command="sudo $command"
-done; unset command
+for command in \
+    mount \
+    umount \
+    sv \
+    pacman \
+    updatedb \
+    su \
+    shutdown \
+    poweroff \
+    reboot \
+    xbps-remove \
+    xbps-install
+do
+    alias $command="sudo $command"
+done
+
+unset command
 
 netinfo ()
 {
@@ -29,6 +43,29 @@ se() {
 	choice="$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)"
 	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
 	}
+
+# xbps
+# Credits to kitu
+# https://www.youtube.com/watch?v=CbtKcPpmP5A
+pc() { xbps-remove -yo && xbps-remove -O0; }
+pi() { [ -n "$1" ] && xbps-install -Sy "$@"; }
+pl() { xpkg -m | column; }
+pm() { xbps-pkgdb -m $@; }
+pn() { xpkg | wc -l; }
+pq() { [ -n "$1" ] && xbps-query -RS $@ | bat --color=always -l yaml; }
+pu() { xbps-install -Syu; }
+pr() {
+  if [ -z "$2" ]; then
+    PACKAGE="$(xpkg | fzf --multi --query="$1")"
+    [ -n "$PACKAGE" ] && xbps-remove -Ry $PACKAGE
+  else
+    xbps-remove -Ry "$@"
+  fi
+}
+pf() {
+  PACKAGE="$(xpkg -a | fzf --multi --query="$*" --preview="xbps-query -RS {} | bat -l yaml --color=always -p")"
+  [ -n "$PACKAGE" ] && xbps-install -Sy $PACKAGE
+}
 
 # tmux stuff
 tmux () {
@@ -71,12 +108,6 @@ alias \
   mylatex="latexmk -pdf -pvc -auxdir=temp -outdir=. main.tex"\
   pdf="zathura main.pdf"
 
-#xbps
-alias \
-  xin="sudo xbps-install" \
-  xre="sudo xbps-remove -R" \
-  xcl="sudo xbps-remove -Oo"
-
 # Verbosity
 alias \
 	cp="cp -iv" \
@@ -103,4 +134,7 @@ alias \
 	z="zathura"
 
 alias \
-	ref='shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutenvrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc'
+	ref='shortcuts >/dev/null;
+  source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ;
+  source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutenvrc ; 
+  source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc'
