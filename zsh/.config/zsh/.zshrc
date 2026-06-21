@@ -22,7 +22,7 @@ stty stop undef # disables terminal freezing ctrl-s
 ....() { cd ../../..; ls }
 
 # zoxide
-eval "$(zoxide init zsh)"
+#eval "$(zoxide init zsh)"
 
 # vi mode
 bindkey -v

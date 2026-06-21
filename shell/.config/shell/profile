@@ -6,10 +6,6 @@ emulate sh -c 'source /etc/profile' # POSIX sh
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/statusbar/:$PATH"
 
-# texlive
-export PATH="/opt/texlive/2018/bin/x86_64-linux/:$PATH"
-
-# Add all directories in `~/.local/bin` to $PATH
 export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
 
 unsetopt PROMPT_SP 2>/dev/null
@@ -20,3 +16,13 @@ export EDITOR="nvim"
 export TERMINAL="st"
 export TERMINAL_PROG="st"
 export BROWSER="firefox"
+
+# fzf settings
+export FZF_DEFAULT_OPTS=" \
+  --border=rounded \
+  --height=90% \
+  --highlight-line
+  --layout=reverse \
+  --margin=1 \
+  --padding=1 \
+"

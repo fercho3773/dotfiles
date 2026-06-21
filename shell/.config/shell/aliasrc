@@ -5,7 +5,6 @@
 
 # Use $XINITRC variable if file exists.
 #[ -f "$XINITRC" ] && alias startx='startx $XINITRC'
-#[ -f "$MBSYNCRC" ] && alias mbsync='mbsync -c $MBSYNCRC'
 
 # sudo not required for some system commands
 for command in \
@@ -13,11 +12,13 @@ for command in \
     umount \
     sv \
     pacman \
-    updatedb \
     su \
     shutdown \
     poweroff \
     reboot \
+    vsv \
+    vkpurge \
+    xbps-reconfigure \
     xbps-remove \
     xbps-install
 do
@@ -26,67 +27,10 @@ done
 
 unset command
 
-netinfo ()
-{
-	echo "--------------- Network Information ---------------"
-	/sbin/ifconfig | awk /'inet addr/ {print $2}'
-	echo ""
-	/sbin/ifconfig | awk /'Bcast/ {print $3}'
-	echo ""
-	/sbin/ifconfig | awk /'inet addr/ {print $4}'
-
-	/sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
-	echo "---------------------------------------------------"
-}
-
 se() {
 	choice="$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)"
 	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
 	}
-
-# xbps
-# Credits to kitu
-# https://www.youtube.com/watch?v=CbtKcPpmP5A
-pc() { xbps-remove -yo && xbps-remove -O0; }
-pi() { [ -n "$1" ] && xbps-install -Sy "$@"; }
-pl() { xpkg -m | column; }
-pm() { xbps-pkgdb -m $@; }
-pn() { xpkg | wc -l; }
-pq() { [ -n "$1" ] && xbps-query -RS $@ | bat --color=always -l yaml; }
-pu() { xbps-install -Syu; }
-pr() {
-  if [ -z "$2" ]; then
-    PACKAGE="$(xpkg | fzf --multi --query="$1")"
-    [ -n "$PACKAGE" ] && xbps-remove -Ry $PACKAGE
-  else
-    xbps-remove -Ry "$@"
-  fi
-}
-pf() {
-  PACKAGE="$(xpkg -a | fzf --multi --query="$*" --preview="xbps-query -RS {} | bat -l yaml --color=always -p")"
-  [ -n "$PACKAGE" ] && xbps-install -Sy $PACKAGE
-}
-
-# tmux stuff
-tmux () {
-    case "$1" in
-        "as")
-            shift
-            command tmux attach-session -t "$@"
-            ;;
-        "ks")
-            shift
-            command tmux kill-session -t "$@"
-            ;;
-        "ns")
-            shift
-            command tmux new-session -s "$@"
-            ;;
-        *)
-            command tmux "$@"
-            ;;
-    esac
-}
 
 # Extract archives considering the file extension
 extract() {
@@ -102,11 +46,11 @@ extract() {
 # ok
 alias \
   top="btop" \
-  fetch="fastfetch" \
+  fetch="pfetch" \
   tw="typst watch --pdf-standard 1.5" \
   yta="yt-dlp -x -f 251 --embed-metadata --embed-thumbnail --no-playlist" \
   mylatex="latexmk -pdf -pvc -auxdir=temp -outdir=. main.tex"\
-  pdf="zathura main.pdf"
+  pdf="zathura"
 
 # Verbosity
 alias \
@@ -130,11 +74,104 @@ alias \
 	ka="killall" \
 	g="git" \
 	e='$EDITOR' \
-	v='$EDITOR' \
-	z="zathura"
+	v='$EDITOR'
 
 alias \
 	ref='shortcuts >/dev/null;
   source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ;
   source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutenvrc ; 
   source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc'
+
+# Functions
+# Functions
+# Functions
+
+netinfo ()
+{
+	echo "--------------- Network Information ---------------"
+	/sbin/ifconfig | awk /'inet addr/ {print $2}'
+	echo ""
+	/sbin/ifconfig | awk /'Bcast/ {print $3}'
+	echo ""
+	/sbin/ifconfig | awk /'inet addr/ {print $4}'
+
+	/sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
+	echo "---------------------------------------------------"
+}
+
+# xbps helper
+# Credits to kitu
+# https://www.youtube.com/watch?v=CbtKcPpmP5A
+
+# cleanup
+pkc() { 
+  xbps-remove -yo && xbps-remove -OO && vkpurge rm all ; 
+}
+
+# install
+pki() { [ -n "$1" ] && xbps-install -Sy "$@"; } 
+
+# list manually installed
+pkl() { xpkg -m | column; } #pkg list
+
+
+pkm() { xbps-pkgdb -m $@; }
+
+# number installed packages
+pkn() { xpkg | wc -l; } #pkg number
+
+# query
+pkq() { [ -n "$1" ] && xbps-query -RS $@ ; } #pkg query
+
+# update
+pku() { xbps-install -Syu; } #pkg up
+
+# remove
+pkr() {
+  if [ -z "$2" ]; then 
+    clear && echo "xbps-remove -Ry"
+    PACKAGE="$(xpkg | fzf --multi --query="$1")"
+    [ -n "$PACKAGE" ] && xbps-remove -Ry $PACKAGE
+  else
+    xbps-remove -Ry "$@"
+  fi
+}
+
+# find
+pkf() {
+  clear && echo "xbps-query -RS"
+  PACKAGE="$(xpkg -a | fzf --multi --query="$*" --preview="xbps-query -RS {}")"
+  [ -n "$PACKAGE" ] && xbps-install -Sy $PACKAGE
+}
+
+# tmux stuff
+tmux () {
+  case "$1" in
+        "as")
+            shift
+            command tmux attach-session -t "$@"
+            ;;
+        "ks")
+            shift
+            command tmux kill-session -t "$@"
+            ;;
+        "ns")
+            shift
+            command tmux new-session -s "$@"
+            ;;
+        *)
+            command tmux "$@"
+            ;;
+  esac
+}
+
+# find man pages
+#fman() {
+#    man -k . | 
+#    fzf -q "$1" --prompt='man> ' --preview $'echo {} | 
+#    tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | 
+#    xargs -r man' |
+#    tr -d '()' |
+#    awk '{printf "%s ", $2} {print $1}' |
+#    xargs -r man
+#}
