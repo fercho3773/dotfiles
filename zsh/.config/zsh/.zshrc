@@ -16,6 +16,10 @@ setopt globdots # include dotfiles
 setopt interactive_comments # allow comments in zshell 
 stty stop undef # disables terminal freezing ctrl-s
 
+# if not running, do not do anything
+[ -z "$PS1" ] && return
+
+
 # dirs
 ..() { cd ..; ls }
 ...() { cd ../..; ls }
