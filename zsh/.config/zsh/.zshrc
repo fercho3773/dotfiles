@@ -10,23 +10,22 @@ autoload -U compinit && compinit
 autoload -U colors && colors
 autoload -U tetris
 
-setopt autocd # type a dir to cd 
-setopt auto_param_slash # add a "/" instead of treadline on dirs
-setopt globdots # include dotfiles
+setopt autocd               # type a dir to cd 
+setopt auto_param_slash     # add a "/" instead of treadline on dirs
+setopt globdots             # include dotfiles
 setopt interactive_comments # allow comments in zshell 
-stty stop undef # disables terminal freezing ctrl-s
+stty stop undef             # disables terminal freezing ctrl-s
 
 # if not running, do not do anything
 [ -z "$PS1" ] && return
 
-
-# dirs
 ..() { cd ..; ls }
 ...() { cd ../..; ls }
 ....() { cd ../../..; ls }
 
-# zoxide
+# evals
 #eval "$(zoxide init zsh)"
+#source <(fzf --zsh)
 
 # vi mode
 bindkey -v
@@ -46,6 +45,13 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+# fzf
+fzfcleanfind() {
+  clear | fd --type f --exclude .git --exclude dist | fzf
+}
+zle -N fzfcleanfind
+bindkey '^F' fzfcleanfind
+
 ### prompts
 NEWLINE=$'\n'
  PROMPT="${NEWLINE}%K{#2E3440}%F{#E5E9F0}$(date +%_I:%M%P) %K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %f%k ❯ " # nord theme
@@ -59,7 +65,7 @@ NEWLINE=$'\n'
 
 # Load aliases and shortcuts if existent.
 # Environment variables in ~/.zprofile
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
+#[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile"
 
