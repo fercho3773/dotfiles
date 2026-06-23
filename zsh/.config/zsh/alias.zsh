@@ -1,0 +1,182 @@
+#!/bin/sh
+
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# Use $XINITRC variable if file exists.
+#[ -f "$XINITRC" ] && alias startx='startx $XINITRC'
+
+# sudo not required for some system commands
+for command in \
+    mount \
+    umount \
+    sv \
+    su \
+    shutdown \
+    poweroff \
+    reboot \
+    pacman \
+    vsv \
+    vkpurge \
+    xbps-reconfigure \
+    xbps-remove \
+    xbps-install
+do
+    alias $command="sudo $command"
+done
+
+unset command
+
+se() {
+	choice="$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)"
+	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
+	}
+
+# Extract archives considering the file extension
+extract() {
+  case $1 in
+    *.tar.gz|*.tgz) tar -xzf "$1";;
+    *.tar.bz2|*.tbz2) tar -xjf "$1";;
+    *.zip) unzip "$1";;
+    *.rar) unrar x "$1";;
+    *) echo "Unknown archive format";;
+  esac
+}
+
+# ok
+alias \
+  top="btop" \
+  fetch="pfetch" \
+  tw="typst watch --pdf-standard 1.5" \
+  yta="yt-dlp -x -f 251 --embed-metadata --embed-thumbnail --no-playlist" \
+  mylatex="latexmk -pdf -pvc -auxdir=temp -outdir=. main.tex"\
+  pdf="zathura"
+
+# Verbosity
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	bc="bc -ql" \
+	mkd="mkdir -pv" \
+	ffmpeg="ffmpeg -hide_banner"
+
+# Colorize commands when possible.
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi" \
+	ip="ip -color=auto"
+
+# These common commands are just too long! Abbreviate them.
+alias \
+	ka="killall" \
+	g="git" \
+	e='$EDITOR' \
+	v='$EDITOR'
+
+alias \
+	ref='shortcuts >/dev/null;
+  source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc ;
+  source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutenvrc ; 
+  source ${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc'
+
+# Functions
+# Functions
+# Functions
+
+netinfo ()
+{
+	echo "--------------- Network Information ---------------"
+	/sbin/ifconfig | awk /'inet addr/ {print $2}'
+	echo ""
+	/sbin/ifconfig | awk /'Bcast/ {print $3}'
+	echo ""
+	/sbin/ifconfig | awk /'inet addr/ {print $4}'
+
+	/sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
+	echo "---------------------------------------------------"
+}
+
+# xbps helper
+# Credits to kitu
+# https://www.youtube.com/watch?v=CbtKcPpmP5A
+
+# cleanup
+pac() { 
+  xbps-remove -yo && xbps-remove -OO && vkpurge rm all ; 
+}
+
+# install
+pai() { [ -n "$1" ] && xbps-install -Sy "$@"; } 
+
+pal() { xpkg -m | column; } # list manually installed
+
+pam() { xbps-pkgdb -m $@; } # hold package
+
+pan() { xpkg | wc -l; } # number package
+
+paq() { [ -n "$1" ] && xbps-query -RS $@ ; } #query
+
+pau() { xbps-install -Syu; } #update
+
+# remove
+par() {
+  if [ -z "$2" ]; then 
+    clear && echo "xbps-remove -Ry"
+    PACKAGE="$(xpkg | fzf --multi --query="$1")"
+    [ -n "$PACKAGE" ] && xbps-remove -Ry $PACKAGE
+  else
+    xbps-remove -Ry "$@"
+  fi
+}
+
+paf() {
+  clear && echo "xbps-query -RS"
+  PACKAGE="$(xpkg -a | fzf --multi --query="$*" --preview="xbps-query -RS {}")"
+  [ -n "$PACKAGE" ] && xbps-install -Sy $PACKAGE
+}
+
+# tmux stuff
+tmux () {
+  case "$1" in
+        "as")
+            shift
+            command tmux attach-session -t "$@"
+            ;;
+        "ks")
+            shift
+            command tmux kill-session -t "$@"
+            ;;
+        "ns")
+            shift
+            command tmux new-session -s "$@"
+            ;;
+        *)
+            command tmux "$@"
+            ;;
+  esac
+}
+
+
+# fzf fuzzy finder
+_fzf_file_no_hidden() {
+  local cmd result
+  cmd="${FZF_DEFAULT_COMMAND/--hidden /}"
+  result=$(eval "${cmd:-find . -type f}" | fzf --preview "$_FZF_PREVIEW_CMD") \
+    && LBUFFER+="$result"  # LBUFFER is the text left of the cursor
+  zle reset-prompt
+}
+zle -N _fzf_file_no_hidden
+
+# find man pages
+#fman() {
+#    man -k . | 
+#    fzf -q "$1" --prompt='man> ' --preview $'echo {} | 
+#    tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | 
+#    xargs -r man' |
+#    tr -d '()' |
+#    awk '{printf "%s ", $2} {print $1}' |
+#    xargs -r man
+#}

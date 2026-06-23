@@ -39,6 +39,6 @@ export FZF_DEFAULT_OPTS=" \
 
 #export FZF_CTRL_F_COMMAND='fd --type f --exclude .git --exclude dist'
 #export FZF_CTRL_F_OPTS="--preview '$_FZF_PREVIEW_CMD'"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview '$_FZF_PREVIEW_CMD'"
+#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#export FZF_CTRL_T_OPTS="--preview '$_FZF_PREVIEW_CMD'"
 
