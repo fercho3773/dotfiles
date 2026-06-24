@@ -2,6 +2,9 @@
 vim.g.mapleader = " "                              -- Set leader key to space
 vim.g.maplocalleader = " "                         -- Set local leader key (NEW)
 
+-- Compile with leader + s
+vim.keymap.set('n', '<leader>c', ':w!<CR>:!compiler "%:p"<CR>', { silent = true })
+
 -- Normal mode mappings
 vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
 

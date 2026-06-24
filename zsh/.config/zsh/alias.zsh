@@ -1,15 +1,4 @@
-#!/bin/sh
-
-whichsu() {
-  if command -v doas >/dev/null 2>&1; then
-    echo doas
-  elif command -v sudo >/dev/null 2>&1; then
-    echo sudo
-  else
-    echo "Neither sudo or doas is installed."
-  fi
-}
-
+# require super user
 for x in \
     mount \
     umount \
@@ -25,20 +14,20 @@ for x in \
     xbps-remove \
     xbps-install
 do
-    alias $x="$whichsu $x"
+  if command -v doas >/dev/null 2>&1; then
+     alias $x="doas $x"
+  else
+    alias $x="sudo $x"
+  fi
 done
-
 unset x
 
-# to do: move to bin local doc compiler
-#alias \
-#  tw="typst watch --pdf-standard 1.5" \
-#  yta="yt-dlp -x -f 251 --embed-metadata --embed-thumbnail --no-playlist" \
-#  mylatex="latexmk -pdf -pvc -auxdir=temp -outdir=. main.tex"\
-
+# if exists, do alias
 [ -x "$(command -v btop)" ] && alias top="btop"
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 [ -x "$(command -v zathura)" ] && alias pdf="zathura"
+[ -x "$(command -v pfetch)" ] && alias fetch="pfetch"
+[ -x "$(command -v lf)" ] && alias fm="lf"
 
 # verbose
 alias \

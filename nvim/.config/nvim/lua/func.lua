@@ -103,7 +103,7 @@ vim.opt.diffopt:append("linematch:60")
 
 -- Performance improvements
 vim.opt.redrawtime = 5000
-vim.opt.maxmempattern = 15000
+vim.opt.maxmempattern = 10000
 
 -- Create undo directory if it doesn't exist
 local undodir = vim.fn.expand("~/.vim/undodir")

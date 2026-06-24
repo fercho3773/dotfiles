@@ -33,7 +33,7 @@ pan() { xpkg | wc -l; } # number package
 
 paq() { [ -n "$1" ] && xbps-query -RS $@ ; } #query
 
-pau() { xbps-install -Syu; } #update
+pau() { xbps-install -Suy; } #update
 
 # remove
 par() {

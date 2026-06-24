@@ -1,4 +1,3 @@
-#!/bin/sh
 # shellcheck disable=SC2155
 emulate sh -c 'source /etc/profile' # POSIX sh
 
@@ -6,8 +5,8 @@ emulate sh -c 'source /etc/profile' # POSIX sh
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/statusbar/:$PATH"
 export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
-
 unsetopt PROMPT_SP 2>/dev/null
+
 
 # Default programs:
 export IMGVIEWER="feh"
@@ -17,16 +16,27 @@ export TERMINAL="st"
 export TERMINAL_PROG="st"
 export BROWSER="firefox"
 
+# system
+export QT_QPA_PLATFORMTHEME="gtk2"
+
+# wine
+#export WINEPREFIX="$HOME/wineprefixes/default"
+
 # python
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # fzf fuzzy finder
-export FZF_DEFAULT_COMMAND='fd --type f --hidden \
+export FZF_DEFAULT_COMMAND="fd --type f --hidden \
   --strip-cwd-prefix \
   --exclude .git \
-  --exclude dist'
+  --exclude dist
+"
 
-export _FZF_PREVIEW_CMD='bat --color=always --style=plain,numbers --line-range=:500 {}'
+export _FZF_PREVIEW_CMD="bat \
+  --color=always \
+  --style=plain,numbers \
+  --line-range=:500 {}
+"
 
 export FZF_DEFAULT_OPTS=" \
   --border=rounded \

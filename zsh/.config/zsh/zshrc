@@ -66,8 +66,8 @@ NEWLINE=$'\n'
 # load config
 #[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/env.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/env.zsh"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions.zsh"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/alias.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/alias.zsh"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions.zsh"
 
 # Fish-like syntax highlighting and autosuggestions and history
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
