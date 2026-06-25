@@ -1,0 +1,51 @@
+#!/bin/sh
+
+#case $BLOCK_BUTTON in
+#  1) notify-send "$(echo TEST)" "$(echo BREAKLINE)"
+#  ;;
+#esac
+
+for battery in /sys/class/power_supply/BAT?*; do
+	[ -n "${capacity+x}" ] && printf " | "       # Put a separator for each bat
+	
+	case "$(cat "$battery/status" 2>&1)" in      # Icon and capacity
+		"Full") status="⚡" ;;
+		"Discharging") status="🔋" ;;
+		"Charging") status="🔌" ;;
+		"Not charging") status="󱟢" ;;
+		"Unknown") status="♻️" ;;
+		*) exit 1 ;;
+	esac
+	
+  capacity="$(cat "$battery/capacity" 2>&1)"
+	
+  # Will make a warn variable if discharging and low
+	[ "$status" = "🔋" ] && [ "$capacity" -le 25 ] && warn="❗"
+	
+  # Prints the info
+	printf "%s%s%d%%" "$status" "$warn" "$capacity"; unset warn
+done && printf "\\n"
+
+numbat = 0 # number of batteries
+
+for battery in /sys/class/power_supply/BAT?*; do
+    if [ -d "$battery" ]; then
+        numbat=$((numbar + 1))
+    fi
+done
+
+if numbat = if [ "$X" -eq 1 ]; then
+  case "$(cat "$battery/status" 2>&1)" in      # Icon and capacity
+		"Full") status="⚡" ;;
+		"Discharging") status="🔋" ;;
+		"Charging") status="🔌" ;;
+		"Not charging") status="󱟢" ;;
+		"Unknown") status="♻️" ;;
+		*) exit 1 ;;
+	esac
+else
+
+fi
+
+
+echo "Total: $X"

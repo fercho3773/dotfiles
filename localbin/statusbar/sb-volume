@@ -1,0 +1,27 @@
+#!/bin/sh
+
+vol="$(amixer get Master| awk -F'[][]' '/%/{print $2; exit}' | tr -d '%')"
+vmute="$(amixer get Master | awk -F'[][]' '/%/{print $6; exit}')"
+
+case $BLOCK_BUTTON in
+	1) notify-send "$(amixer get Master | grep "%" || exit)"
+  ;;
+esac
+
+# If muted, print MUTE and exit.
+[ "$vmute" = "off" ] && echo "MUTE" && exit
+
+volprint="$(printf $vol  )"
+
+case 1 in
+	$((vol >= 70)) ) icon="🔊"
+    ;;
+	$((vol >= 30)) ) icon="󰖀"
+    ;;
+	$((vol >= 1)) )  icon="🔈"
+    ;;
+	* ) echo "XX" && exit
+    ;;
+esac
+
+echo "$icon$volprint"

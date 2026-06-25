@@ -1,0 +1,20 @@
+#!/bin/sh
+
+file="${1}"           # filemame
+ext="${file##*.}"     # file extension
+dir=${file%/*}        # file directory
+base="${file%.*}"     # file w/no ext
+
+#cd "${dir}" || exit "1"
+
+case "${ext}" in
+    qmd) quarto render "${file}"
+    ;;
+    py) python "${file}"
+    ;;
+    tex) latexmk -pdf -pvc -auxdir=temp -outdir=. "${file}"
+    ;;
+    typ) typst compile --pdf-standard 1.5 "${file}"
+    ;;
+    *) sed -n '/^#!/s/^#!//p; q' "${file}" | xargs -r -I % "${file}" ;;
+esac

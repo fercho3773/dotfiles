@@ -1,0 +1,3 @@
+#!/bin/sh
+
+free -h --giga  | awk 'NR==2{print $3}'

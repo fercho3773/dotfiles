@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+options="Lock\nLogout\nSuspend\nShutdown\nReboot"
+
+chosen=$(echo -e "$options" | dmenu -i -p "Power Menu:")
+
+if command -v systemctl >/dev/null 2>&1; then
+    sc="systemctl"
+else
+    sc="loginctl"
+fi
+
+case "$chosen" in
+    "Shutdown")
+        $sc poweroff
+        ;;
+    "Reboot")
+        $sc reboot
+        ;;
+    "Logout")
+        pkill -u "$(whoami)"
+        ;;
+    "Suspend")
+        slock | sleep 0.1 & $sc suspend
+        ;;
+    "Lock")
+        slock
+        ;;
+esac

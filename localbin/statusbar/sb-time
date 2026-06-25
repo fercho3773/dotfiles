@@ -1,0 +1,9 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) notify-send "$(scal -m)"
+  ;;
+esac
+
+date '+%Y-%b-%d-%a %H:%M'
+
