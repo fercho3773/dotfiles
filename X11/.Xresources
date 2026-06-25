@@ -4,9 +4,9 @@ Xft.autohint:	0
 Xft.hintstyle:	hintslight
 Xft.rgba:	rgb
 Xft.lcdfilter:	lcddefault
-Xft.dpi: 160
+Xft.dpi: 100
 
-*.font: Hack Nerd Font Mono:size=10
+*.font: Hack Nerd Font Mono:size=11
 
 st.borderpx: 5
 st.alpha: 0.85
@@ -15,66 +15,33 @@ st.alpha: 0.85
 *foreground: #dadada
 
 ! Black + DarkGrey
-*color0:  #22292b
-*color8:  #575e60
+!*color0:  #22292b
+!*color8:  #575e60
 
 ! DarkRed + Red
-*color1:  #e06e6e
-*color9:  #ef7d7d
+!*color1:  #e06e6e
+!*color9:  #ef7d7d
 
 ! DarkGreen + Green
-*color2:  #8ccf7e
-*color10: #9bdead
+!*color2:  #8ccf7e
+!*color10: #9bdead
 
 ! DarkYellow + Yellow
-*color3:  #e5c76b
-*color11: #f4d67a
+!*color3:  #e5c76b
+!*color11: #f4d67a
 
 ! DarkBlue + Blue
-*color4:  #67b0e8
-*color12: #6cb5ed
+!*color4:  #67b0e8
+!*color12: #6cb5ed
 
 ! DarkMagenta + Magenta
-*color5:  #c47fd5
-*color13: #ce89df
+!*color5:  #c47fd5
+!*color13: #ce89df
 
 ! DarkCyan + Cyan
-*color6:  #6da4cd
-*color14: #67cbe7
+!*color6:  #6da4cd
+!*color14: #67cbe7
 
 ! LightGrey + White
-*color7:  #b3b9b8
-*color15: #bdc3c2
-
-dwm.normfgcolor: #bbbbbb
-dwm.normbgcolor: #222222
-dwm.normbordercolor: #444444
-dwm.normfloatcolor: #444444
-dwm.selfgcolor: #eeeeee
-dwm.selbgcolor: #005577
-dwm.selbordercolor: #005577
-dwm.selfloatcolor: #005577
-dwm.titlenormfgcolor: #bbbbbb
-dwm.titlenormbgcolor: #222222
-dwm.titlenormbordercolor: #444444
-dwm.titlenormfloatcolor: #444444
-dwm.titleselfgcolor: #eeeeee
-dwm.titleselbgcolor: #005577
-dwm.titleselbordercolor: #005577
-dwm.titleselfloatcolor: #005577
-dwm.tagsnormfgcolor: #bbbbbb
-dwm.tagsnormbgcolor: #222222
-dwm.tagsnormbordercolor: #444444
-dwm.tagsnormfloatcolor: #444444
-dwm.tagsselfgcolor: #eeeeee
-dwm.tagsselbgcolor: #005577
-dwm.tagsselbordercolor: #005577
-dwm.tagsselfloatcolor: #005577
-dwm.hidnormfgcolor: #bbbbbb
-dwm.hidnormbgcolor: #222222
-dwm.hidselfgcolor: #eeeeee
-dwm.hidselbgcolor: #005577
-dwm.urgfgcolor: #bbbbbb
-dwm.urgbgcolor: #222222
-dwm.urgbordercolor: #ff0000
-dwm.urgfloatcolor: #ff0000
+!*color7:  #b3b9b8
+!*color15: #bdc3c2

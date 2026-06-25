@@ -1,7 +1,7 @@
 #! /bin/sh
 
-xclip &
-xrandr --dpi 96 &
+clipmenu &
+#xrandr --dpi 96 &
 xset -r rate 100 50 &
 setxkbmap -layout 'es' &
 
@@ -9,8 +9,6 @@ dunst &
 dwmblocks &
 xss-lock -- slock &
 xhidecursor &
-
-picom &
 
 #pipewire &
 #/usr/bin/pipewire-pulse &
