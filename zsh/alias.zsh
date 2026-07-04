@@ -1,4 +1,5 @@
 # require super user
+
 for x in \
     mount \
     umount \
@@ -7,6 +8,12 @@ for x in \
     shutdown \
     poweroff \
     reboot \
+    iptables \
+    nftables \
+    ufw \
+    apt \
+    apt-get \
+    dnf \
     pacman \
     vsv \
     vkpurge \
@@ -23,11 +30,12 @@ done
 unset x
 
 # if exists, do alias
-[ -x "$(command -v btop)" ] && alias top="btop"
-[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
-[ -x "$(command -v zathura)" ] && alias pdf="zathura"
-[ -x "$(command -v pfetch)" ] && alias fetch="pfetch"
-[ -x "$(command -v lf)" ] && alias fm="lf"
+[ -x "$(command -v btop)" ]     && alias top="btop"
+[ -x "$(command -v nvim)" ]     && alias vim="nvim" vimdiff="nvim -d"
+[ -x "$(command -v zathura)" ]  && alias pdf="zathura"
+[ -x "$(command -v pfetch)" ]   && alias fetch="pfetch"
+#[ -x "$(command -v lf)" ]       && alias fm="lf"
+[ -x "$(command -v noice)" ]    && alias fm="noice"
 
 # verbose
 alias \
@@ -36,7 +44,8 @@ alias \
 	rm="rm -vI" \
 	bc="bc -ql" \
 	mkd="mkdir -pv" \
-	ffmpeg="ffmpeg -hide_banner"
+	ffmpeg="ffmpeg -hide_banner" \
+  free="free -h"
 
 # color and candy eye
 alias \
@@ -48,7 +57,10 @@ alias \
 
 # abbreviations
 alias \
+  psa="ps aux" \
+  cls="clear" \
 	ka="killall" \
 	g="git" \
 	e='$EDITOR' \
-	v='$EDITOR'
+	v='$EDITOR' \
+  vi='$EDITOR'

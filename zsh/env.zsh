@@ -1,5 +1,4 @@
-# shellcheck disable=SC2155
-emulate sh -c 'source /etc/profile' # POSIX sh
+# shellcheck disable=SC2155 emulate sh -c 'source /etc/profile' # POSIX sh
 
 # statusbar and binaries
 export PATH="$HOME/.local/bin:$PATH"
@@ -16,11 +15,15 @@ export TERMINAL="st"
 export TERMINAL_PROG="st"
 export BROWSER="firefox"
 
+# manpager
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="bat -plman"
+
 # system
 export QT_QPA_PLATFORMTHEME="gtk2"
 
 # wine
-#export WINEPREFIX="$HOME/wineprefixes/default"
+export WINEPREFIX="$HOME/wineprefixes/default"
 
 # python
 export VIRTUAL_ENV_DISABLE_PROMPT=1

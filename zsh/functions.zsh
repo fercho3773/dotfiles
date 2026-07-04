@@ -46,6 +46,7 @@ par() {
   fi
 }
 
+# find
 paf() {
   clear && echo "xbps-query -RS"
   PACKAGE="$(xpkg -a | fzf --multi --query="$*" --preview="xbps-query -RS {}")"
@@ -106,6 +107,7 @@ extract() {
     *.tar.bz2|*.tbz2) tar -xjf "$1";;
     *.zip) unzip "$1";;
     *.rar) unrar x "$1";;
+    *.iso) 7z "$1";; 
     *) echo "Unknown archive format";;
   esac
 }

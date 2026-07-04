@@ -1,26 +1,30 @@
 #! /bin/sh
 
-clipmenu &
 #xrandr --dpi 96 &
 xset -r rate 100 50 &
 setxkbmap -layout 'es' &
 
-dunst & 
-dwmblocks &
-xss-lock -- slock &
-xhidecursor &
+dunst
+dwmblocks
+xhidecursor
+xss-lock --slock
 
-#pipewire &
-#/usr/bin/pipewire-pulse &
-#/usr/bin/wireplumber &
+brightnessctl s 25%
+sct 3200
 
-brightnessctl s 20% &
-sct 3200 &
-
+[[ -f ~/.Xresources ]] && xmodmap ~/.Xmodmap 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
-[[ -f ~/wall.jpg]] && xwallpaper --zoom ~/wall.jpg
+[[ -f ~/wall.jpg ]]    && xwallpaper --zoom ~/wall.jpg
 
+#/usr/bin/pipewire &
+#/usr/bin/pipewire-pulse &
 
-while type dwm > /dev/null; do
-	dwm && continue || break
-done
+pipewire &
+pipewire-pulse &
+wireplumber &
+
+dbus-run-session dwm 
+
+#while type dwm > /dev/null; do
+#	dwm && continue || break
+#done

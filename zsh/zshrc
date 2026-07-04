@@ -24,8 +24,8 @@ stty stop undef             # disables terminal freezing ctrl-s
 ....() { cd ../../..; ls }
 
 # evals
-#eval "$(zoxide init zsh)"
-#source <(fzf --zsh)
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
 # vi mode
 bindkey -v
@@ -53,8 +53,8 @@ zle -N fzfcleanfind
 bindkey '^F' fzfcleanfind
 
 ### prompts
-NEWLINE=$'\n'
- PROMPT="${NEWLINE}%K{#2E3440}%F{#E5E9F0}$(date +%_I:%M%P) %K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %f%k ❯ " # nord theme
+#NEWLINE=$'\n'
+# PROMPT="${NEWLINE}%K{#2E3440}%F{#E5E9F0}$(date +%_I:%M%P) %K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %f%k ❯ " # nord theme
 # PROMPT="${NEWLINE}%K{#32302f}%F{#d5c4a1} $0 %K{#3c3836}%F{#d5c4a1} %n %K{#504945} %~ %f%k ❯ " # warmer theme
 # PROMPT="${NEWLINE}%K{$COL0}%F{$COL1}$(date +%_I:%M%P) %K{$COL0}%F{$COL2} %n %K{$COL3} %~ %f%k ❯ " # pywal colors, from postrun script
 
@@ -68,6 +68,7 @@ NEWLINE=$'\n'
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/env.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/env.zsh"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/alias.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/alias.zsh"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions.zsh"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/nnn.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/nnn.zsh"
 
 # Fish-like syntax highlighting and autosuggestions and history
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

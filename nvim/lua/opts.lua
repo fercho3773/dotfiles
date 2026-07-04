@@ -8,7 +8,6 @@ vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 vim.g.netrw_list_style = 3
 vim.g.netrw_winsize = 30
 
-
 -- Basic settings
 vim.opt.number = true                              -- Line numbers
 vim.opt.relativenumber = true                      -- Relative line numbers
