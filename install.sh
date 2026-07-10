@@ -10,7 +10,7 @@ mkdir -p "$conf"
 mkdir -p "$lbin"
 
 # Creates a symlink for each file in lbin
-for file in "$dots/localbin"/*; do
+for file in "$dots/bin"/*; do
     [ -e "$file" ] || continue
     ln -sfn "$file" "$lbin/$(basename "$file")"
 done
