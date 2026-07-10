@@ -1,0 +1,26 @@
+# python
+__pycache__/
+*.pyc
+
+# logs
+*.log
+*.sock
+
+# python cache
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.replit/
+
+# swaps
+*~
+*.swp
+*.swo
+.DS_Store
+
+# shell history
+.zsh_history
+.bash_history
+
+# neovim
+nvim-pack-lock.json
