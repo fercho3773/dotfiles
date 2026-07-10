@@ -1,6 +1,8 @@
 # Readme
 My personal configuration files for my linux rice.
 
+![desktop](assets/screenshot.png)
+
 ## Install
 
 ```
@@ -17,5 +19,6 @@ You may also want to `chmod +x ~/.local/bin/*`.
 | Directory  | about  |
 |---|---|
 | bin  | Symbolic link to ~/.local/bin for executable files  |
-|   |   |
-|   |   |
+| dunst | Notification daemon   |
+| nvim  | Text editor (neovim ) |
+| tmux  | Terminal multiplexer  |
