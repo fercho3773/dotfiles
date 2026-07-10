@@ -1,5 +1,5 @@
 -- Reload Config
-vim.api.nvim_create_user_command('ReloadConfig', 'source $MYVIMRC', {})
+vim.api.nvim_create_user_command('Reloadconfig', 'source $MYVIMRC', {})
 
 -- Copy Full File-Path
 vim.keymap.set("n", "<leader>pa", function()

@@ -4,6 +4,9 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
+-- Other
+vim.opt.ttyfast = false
+
 -- BuiltIn File Tree
 vim.g.netrw_list_style = 3
 vim.g.netrw_winsize = 30
@@ -33,7 +36,7 @@ vim.opt.incsearch = true                           -- Show matches as you type
 -- Visual settings
 vim.opt.termguicolors = true                       -- Enable 24-bit colors
 vim.opt.signcolumn = "yes"                         -- Always show sign column
-vim.opt.colorcolumn = "120"                        -- Show column at ''  characters
+vim.opt.colorcolumn = "150"                        -- Show column at ''  characters
 vim.opt.showmatch = true                           -- Highlight matching brackets
 vim.opt.matchtime = 2                              -- How long to show matching bracket
 vim.opt.cmdheight = 1                              -- Command line height
@@ -45,6 +48,7 @@ vim.opt.winblend = 0                               -- Floating window transparen
 vim.opt.conceallevel = 0                           -- Don't hide markup
 vim.opt.concealcursor = ""                         -- Don't hide cursor line markup
 vim.opt.lazyredraw = true                          -- Don't redraw during macros
+vim.opt.ttyfast = false 
 vim.opt.synmaxcol = 300                            -- Syntax highlighting limit
 
 -- File handling
@@ -53,9 +57,9 @@ vim.opt.writebackup = false                        -- Don't create backup before
 vim.opt.swapfile = false                           -- Don't create swap files
 vim.opt.undofile = true                            -- Persistent undo
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir")  -- Undo directory
-vim.opt.updatetime = 100                           -- Faster completion
-vim.opt.timeoutlen = 100                           -- Key timeout duration
-vim.opt.ttimeoutlen = 0                            -- Key code timeout
+vim.opt.updatetime = 150                           -- Faster completion
+vim.opt.timeoutlen = 150                           -- Key timeout duration
+vim.opt.ttimeoutlen = 200                            -- Key code timeout
 vim.opt.autoread = true                            -- Auto reload files changed outside vim
 vim.opt.autowrite = false                          -- Don't auto save
 

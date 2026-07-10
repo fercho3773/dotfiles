@@ -17,25 +17,43 @@ netinfo ()
 # Credits to kitu
 # https://www.youtube.com/watch?v=CbtKcPpmP5A
 
-# cleanup
-pac() { 
+# package cleanup
+pac() {
+  echo "xbps-remove -yo && xbps-remove -OO && vkpurge rm all" 
   xbps-remove -yo && xbps-remove -OO && vkpurge rm all ; 
 }
 
-# install
-pai() { [ -n "$1" ] && xbps-install -Sy "$@"; } 
+# package information
+#paq() { [ -n "$1" ] && xbps-query -RS $@ ; } #query
+painf() {
+  if [ -z "$2" ]; then 
+    clear && echo "xbps-query -R"
+    PACKAGE="$(xpkg | fzf --multi --query="$1")"
+    [ -n "$PACKAGE" ] && xbps-query -R $PACKAGE
+  else
+    echo "xbps-remove -Ry"
+    xbps-remove -Ry "$@"
+  fi
+}
+
 
 pal() { xpkg -m | column; } # list manually installed
 
 pam() { xbps-pkgdb -m $@; } # hold package
 
-pan() { xpkg | wc -l; } # number package
+# pkg number
+pan() {
+  echo "xpkg | wc -l"
+  xpkg | wc -l
+}
 
-paq() { [ -n "$1" ] && xbps-query -RS $@ ; } #query
+# pkg update
+pau() { 
+  echo "xbps-install -Suy"
+  xbps-install -Suy
+}
 
-pau() { xbps-install -Suy; } #update
-
-# remove
+# pkg remove
 par() {
   if [ -z "$2" ]; then 
     clear && echo "xbps-remove -Ry"
@@ -46,11 +64,15 @@ par() {
   fi
 }
 
-# find
+# find or install
 paf() {
-  clear && echo "xbps-query -RS"
-  PACKAGE="$(xpkg -a | fzf --multi --query="$*" --preview="xbps-query -RS {}")"
-  [ -n "$PACKAGE" ] && xbps-install -Sy $PACKAGE
+  if [ -z "$2" ]; then
+    clear && echo "xbps-query -RS"
+    PACKAGE="$(xpkg -a | fzf --multi --query="$*" --preview="xbps-query -RS {}")"
+    [ -n "$PACKAGE" ] && xbps-install -Sy $PACKAGE
+  else
+    xbps-install -Sy "$@"
+  fi
 }
 
 # tmux stuff
@@ -96,18 +118,24 @@ zle -N _fzf_file_no_hidden
 #    xargs -r man
 
 
+# search local bin
 se() {
-	choice="$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)"
+	choice="$(find ~/.local/bin -mindepth 2 -printf '%P\n' | fzf)"
 	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
-	}
+}
 
+# extract zip files
 extract() {
   case $1 in
     *.tar.gz|*.tgz) tar -xzf "$1";;
     *.tar.bz2|*.tbz2) tar -xjf "$1";;
     *.zip) unzip "$1";;
     *.rar) unrar x "$1";;
+    *.7z) 7z "$1";; 
     *.iso) 7z "$1";; 
     *) echo "Unknown archive format";;
   esac
 }
+
+# compress into a zip file
+

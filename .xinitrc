@@ -1,18 +1,20 @@
 #! /bin/sh
 
 #xrandr --dpi 96 &
-xset -r rate 100 50 &
+xset -r rate 90 75 &
 setxkbmap -layout 'es' &
+setxkbmap -option "caps:swapescape" & # swap capslock with escape
+setxkbmap -option "altwin:left_alt_win" & # swap super with left alt
 
-dunst
-dwmblocks
-xhidecursor
-xss-lock --slock
+dunst &
+dwmblocks &
+xhidecursor &
+xss-lock --slock &
 
-brightnessctl s 25%
-sct 3200
+brightnessctl s 25% &
+sct 3200 &
 
-[[ -f ~/.Xresources ]] && xmodmap ~/.Xmodmap 
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 [[ -f ~/wall.jpg ]]    && xwallpaper --zoom ~/wall.jpg
 

@@ -1,5 +1,4 @@
 # require super user
-
 for x in \
     mount \
     umount \
@@ -31,11 +30,11 @@ unset x
 
 # if exists, do alias
 [ -x "$(command -v btop)" ]     && alias top="btop"
+#[ -x "$(command -v eza)" ]      && alias cd="eza"
 [ -x "$(command -v nvim)" ]     && alias vim="nvim" vimdiff="nvim -d"
-[ -x "$(command -v zathura)" ]  && alias pdf="zathura"
 [ -x "$(command -v pfetch)" ]   && alias fetch="pfetch"
-#[ -x "$(command -v lf)" ]       && alias fm="lf"
-[ -x "$(command -v noice)" ]    && alias fm="noice"
+[ -x "$(command -v zathura)" ]  && alias pdf="zathura"
+[ -x "$(command -v sfm)" ]    && alias fm="sfm" # sfm,noice,lf,ranger,etc
 
 # verbose
 alias \
@@ -49,7 +48,8 @@ alias \
 
 # color and candy eye
 alias \
-	ls="ls -hN --color=auto --group-directories-first" \
+	df="duf" \
+  ls="ls -hN --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi" \
@@ -64,3 +64,7 @@ alias \
 	e='$EDITOR' \
 	v='$EDITOR' \
   vi='$EDITOR'
+
+# other
+alias vxinit="v {XDG_CONFIG_HOME:-$HOME}/.xinitrc"
+

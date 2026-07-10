@@ -6,7 +6,6 @@ export PATH="$HOME/.local/bin/statusbar/:$PATH"
 export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
 unsetopt PROMPT_SP 2>/dev/null
 
-
 # Default programs:
 export IMGVIEWER="feh"
 export EDITOR="nvim"
@@ -16,8 +15,9 @@ export TERMINAL_PROG="st"
 export BROWSER="firefox"
 
 # manpager
-#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export MANPAGER="bat -plman"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="moor"
+export MANROFFOPT="-c"
 
 # system
 export QT_QPA_PLATFORMTHEME="gtk2"
@@ -28,8 +28,20 @@ export WINEPREFIX="$HOME/wineprefixes/default"
 # python
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+# moor/moar (pager)
+export MOOR="--colors=256 \
+  --follow \
+  --mousemode=select \
+  --render-unprintable=whitespace \
+  --statusbar=plain \ 
+  --tab-size=4 \
+  --wrap
+"
+
 # fzf fuzzy finder
-export FZF_DEFAULT_COMMAND="fd --type f --hidden \
+export FZF_DEFAULT_COMMAND="fd \
+  --type f \
+  --hidden \
   --strip-cwd-prefix \
   --exclude .git \
   --exclude dist
