@@ -1,0 +1,11 @@
+#!/bin/sh
+# Open manpages from dmenu
+
+set -eu
+
+man_page=$(man -k . | awk '{print $1}' | dmenu -i -l 20 -p "Man page:")
+ 
+# Open selected man page in terminal
+if [ -n "$man_page" ]; then
+    $TERMINAL -e man "$man_page"
+fi

@@ -34,7 +34,7 @@ unset x
 [ -x "$(command -v nvim)" ]     && alias vim="nvim" vimdiff="nvim -d"
 [ -x "$(command -v pfetch)" ]   && alias fetch="pfetch"
 [ -x "$(command -v zathura)" ]  && alias pdf="zathura"
-[ -x "$(command -v sfm)" ]    && alias fm="sfm" # sfm,noice,lf,ranger,etc
+[ -x "$(command -v sfm)" ]      && alias fm="sfm" # sfm,noice,lf,ranger,etc
 
 # verbose
 alias \
@@ -57,6 +57,7 @@ alias \
 
 # abbreviations
 alias \
+  qmk="make clean && sudo make install" \
   psa="ps aux" \
   cls="clear" \
 	ka="killall" \
@@ -64,7 +65,4 @@ alias \
 	e='$EDITOR' \
 	v='$EDITOR' \
   vi='$EDITOR'
-
-# other
-alias vxinit="v {XDG_CONFIG_HOME:-$HOME}/.xinitrc"
 

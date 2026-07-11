@@ -14,7 +14,6 @@ chmod +x install.sh
 ```
 You may also want to `chmod +x ~/.local/bin/*`.
 
-
 ## Components
 | Directory  | about  |
 |---|---|
