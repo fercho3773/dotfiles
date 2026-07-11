@@ -3,8 +3,7 @@
 #xrandr --dpi 96 &
 xset -r rate 90 75 &
 setxkbmap -layout 'es' &
-setxkbmap -option "caps:swapescape" & # swap capslock with escape
-setxkbmap -option "altwin:left_alt_win" & # swap super with left alt
+setxkbmap -option "caps:swapescape,altwin:left_alt_win" # swap capslock w/ escape and swap super with lalt
 
 dunst &
 dwmblocks &

@@ -1,5 +1,3 @@
-# shellcheck disable=SC2155 emulate sh -c 'source /etc/profile' # POSIX sh
-
 # statusbar and binaries
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/statusbar/:$PATH"
@@ -29,14 +27,12 @@ export WINEPREFIX="$HOME/wineprefixes/default"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # moor/moar (pager)
-export MOOR="--colors=256 \
-  --follow \
-  --mousemode=select \
+ export MOOR="--follow \
+  --colors=256 \
   --render-unprintable=whitespace \
-  --statusbar=plain \ 
+  --statusbar=plain \
   --tab-size=4 \
-  --wrap
-"
+  --wrap"
 
 # fzf fuzzy finder
 export FZF_DEFAULT_COMMAND="fd \

@@ -25,7 +25,7 @@ pac() {
 
 # package information
 #paq() { [ -n "$1" ] && xbps-query -RS $@ ; } #query
-painf() {
+paq() {
   if [ -z "$2" ]; then 
     clear && echo "xbps-query -R"
     PACKAGE="$(xpkg | fzf --multi --query="$1")"
@@ -55,7 +55,7 @@ pau() {
 
 # pkg remove
 par() {
-  if [ -z "$2" ]; then 
+  if [ -z "$1" ]; then 
     clear && echo "xbps-remove -Ry"
     PACKAGE="$(xpkg | fzf --multi --query="$1")"
     [ -n "$PACKAGE" ] && xbps-remove -Ry $PACKAGE
