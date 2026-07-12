@@ -1,0 +1,11 @@
+next_img n space
+prev_img m BackSpace
+scroll_up k Up
+scroll_down j Down
+scroll_left h Left
+scroll_right l Right
+zoom_in s plus
+zoom_out d minus
+zoom_default z
+toggle_fullscreen f
+quit q Escape
