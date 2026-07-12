@@ -21,12 +21,18 @@ ln -sfn "$dots/.Xresources"   "$HOME/.Xresources"
 ln -sfn "$dots/.zshrc"        "$HOME/.zshrc"
 
 # .config
-ln -sfn "$dots/feh"       "$conf/feh"
-ln -sfn "$dots/dunst"     "$conf/dunst"
-ln -sfn "$dots/nvim"      "$conf/nvim"
-ln -sfn "$dots/tmux"      "$conf/tmux"
-ln -sfn "$dots/zathura"   "$conf/zathura"
-ln -sfn "$dots/zsh"       "$conf/zsh"
+for x in \
+  feh \
+  dunst \
+  mpv \
+  nvim \
+  tmux \
+  zathura  \
+  zsh
+do
+  mkdir -p $x 
+  ln -sfn "$dots/$x" "$conf/x"
+done
 
 # Notes:
 # ln : makes links between files

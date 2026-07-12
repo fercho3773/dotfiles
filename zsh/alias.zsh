@@ -37,7 +37,7 @@ unset x
 
 [ -x "$(command -v sfm)" ]      && alias fm="sfm" # sfm,noice,lf,ranger,etc
 
-alias feh="feh \
+[ -x "$(command -v feh)" ]      && alias feh="feh \
 --auto-zoom \
 --cache-size 10 \
 --draw-filename \
