@@ -15,15 +15,18 @@ for file in "$dots/bin"/*; do
     ln -sfn "$file" "$lbin/$(basename "$file")"
 done
 
-ln -sfn "$dots/.xinitrc" "$HOME/.xinitrc"
-ln -sfn "$dots/.Xresources"  "$HOME/.Xresources"
-ln -sfn "$dots/.zshrc" "$HOME/.zshrc"
+# single files
+ln -sfn "$dots/.xinitrc"      "$HOME/.xinitrc"
+ln -sfn "$dots/.Xresources"   "$HOME/.Xresources"
+ln -sfn "$dots/.zshrc"        "$HOME/.zshrc"
 
-ln -sfn "$dots/dunst" "$conf/dunst"
-ln -sfn "$dots/nvim" "$conf/nvim"
-ln -sfn "$dots/tmux" "$conf/tmux"
-ln -sfn "$dots/zathura" "$conf/zathura"
-ln -sfn "$dots/zsh" "$conf/zsh"
+# .config
+ln -sfn "$dots/feh"       "$conf/feh"
+ln -sfn "$dots/dunst"     "$conf/dunst"
+ln -sfn "$dots/nvim"      "$conf/nvim"
+ln -sfn "$dots/tmux"      "$conf/tmux"
+ln -sfn "$dots/zathura"   "$conf/zathura"
+ln -sfn "$dots/zsh"       "$conf/zsh"
 
 # Notes:
 # ln : makes links between files

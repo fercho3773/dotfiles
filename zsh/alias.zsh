@@ -34,7 +34,18 @@ unset x
 [ -x "$(command -v nvim)" ]     && alias vim="nvim" vimdiff="nvim -d"
 [ -x "$(command -v pfetch)" ]   && alias fetch="pfetch"
 [ -x "$(command -v zathura)" ]  && alias pdf="zathura"
+
 [ -x "$(command -v sfm)" ]      && alias fm="sfm" # sfm,noice,lf,ranger,etc
+
+alias feh="feh \
+--auto-zoom \
+--cache-size 10 \
+--draw-filename \
+--draw-tinted \
+--preload \
+--recursive \
+--scroll-step 150 \
+"
 
 # verbose
 alias \
@@ -57,6 +68,7 @@ alias \
 
 # abbreviations
 alias \
+  lah="clear && ls -lah" \
   qmk="make clean && sudo make install" \
   psa="ps aux" \
   cls="clear" \
