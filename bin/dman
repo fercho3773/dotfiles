@@ -1,11 +1,15 @@
 #!/bin/sh
-# Open manpages from dmenu
+# open manpages from dmenu
 
 set -eu
 
-man_page=$(man -k . | awk '{print $1}' | dmenu -i -l 20 -p "Man page:")
+manpage=$(man -k . | awk '{print $1}' | dmenu -i -l 20 -p "Man page:")
+
+mann=${manpage%%\(*}
+# the %% cuts the text string at the first parenthesis (,
+# e.g. less(1) converts into less
  
 # Open selected man page in terminal
-if [ -n "$man_page" ]; then
-    $TERMINAL -e man "$man_page"
+if [ -n "$mann" ]; then
+    $TERMINAL -e man "$mann" | notify-send "Viewing man for $manpage."
 fi
