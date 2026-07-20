@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -eu
+
+die() {
+    >&2 printf '%s\n' "$*"
+    exit 1
+}
+
+# fixman: script for  updating/fixing the man pages directory
+script_name="fixman"
+
+get_password() {
+  notify-send "su password for $script_name script"
+  pass=$(echo "" | dmenu -P -p "Password for $script_name:")
+}
+
+get_password
+
+if [[ -x /usr/bin/makewhatis && -x /usr/bin/mandb ]]; then
+    echo "$pass" | sudo -S makewhatis /usr/share/man && \
+      sudo -S mandb || notify-send "Wrong password" && die 
+    notify-send "Updated man pages"
+else 
+  notify-send "Either makewhatis or mandb is not installed"
+fi
+
+notify-send "Updated man pages"
