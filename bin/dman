@@ -4,12 +4,11 @@
 set -eu
 
 manpage=$(man -k . | awk '{print $1}' | dmenu -i -l 20 -p "Man page:")
-
 mann=${manpage%%\(*}
 # the %% cuts the text string at the first parenthesis (,
 # e.g. less(1) converts into less
  
 # Open selected man page in terminal
-if [ -n "$mann" ]; then
+if [ -n "$manpage" ]; then
     $TERMINAL -e man "$mann" | notify-send "Viewing man for $manpage."
 fi

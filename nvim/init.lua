@@ -225,14 +225,15 @@ require("blink.cmp").setup({
     },
     list = {
       selection = {
-        preselect = true,
+        preselect = false,
         auto_insert = true,
       },
     },
   },
 
   sources = {
-    default = { "lsp", "path", "snippets", "buffer" },
+    -- default = { "lsp", "path", "snippets", "buffer" },
+    default = { "lsp", "snippets" },
   },
 })
 
@@ -400,7 +401,8 @@ vim.cmd.colorscheme("tokyonight-night")
 -- setuii component to transparent
 local function set_transparent()
 	local groups = {
-    --
+    --  
+    "NonText",
 		"Normal",
 		"NormalNC",
 		"EndOfBuffer",
