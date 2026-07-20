@@ -4,11 +4,9 @@
 vim.g.netrw_list_style = 3
 vim.g.netrw_winsize = 30
 
--- performance
 vim.opt.redrawtime = 1000                          -- ms to redraw screen
-vim.opt.maxmempattern = 12500                      -- 12mb ram usage (5mb default)
+vim.opt.maxmempattern = 10000                      -- higher ram usage
 
--- Basic settings
 vim.opt.number = true                              -- line numbers
 vim.opt.relativenumber = true                      -- relative line numbers
 vim.opt.cursorline = true                          -- highlight current line
@@ -16,9 +14,9 @@ vim.opt.wrap = true                                -- wrap lines
 vim.opt.scrolloff = 10                             -- keep 10 lines above/below cursor
 vim.opt.sidescrolloff = 8                          -- keep 8 columns left/right of cursor
 
--- Indentation
-vim.opt.tabstop = 2                                -- Tab width
-vim.opt.shiftwidth = 2                             -- Indent width
+-- indentation
+vim.opt.tabstop = 2                                -- tab width
+vim.opt.shiftwidth = 2                             -- indent width
 vim.opt.softtabstop = 2                            -- Soft tab stop
 vim.opt.expandtab = true                           -- Use spaces instead of tabs
 vim.opt.smartindent = true                         -- Smart auto-indenting
@@ -30,19 +28,19 @@ vim.opt.smartcase = true                           -- Case sensitive if uppercas
 vim.opt.hlsearch = false                           -- Don't highlight search results
 vim.opt.incsearch = true                           -- Show matches as you type
 
--- Visual settings
-vim.opt.termguicolors = true                       -- Enable 24-bit colors
-vim.opt.signcolumn = "yes"                         -- Always show sign column
-vim.opt.colorcolumn = "150"                        -- Show column at _ characters
-vim.opt.showmatch = true                           -- Highlight matching brackets
-vim.opt.matchtime = 2                              -- How long to show matching bracket
+-- visual settings
+vim.opt.termguicolors = true                       -- enable 24-bit colors
+vim.opt.signcolumn = "yes"                         -- always show sign column
+vim.opt.colorcolumn = "150"                        -- show column at _ characters
+vim.opt.showmatch = true                           -- highlight matching brackets
+vim.opt.matchtime = 2                              -- how long to show matching bracket
 vim.opt.cmdheight = 1                              -- Command line height
 vim.opt.completeopt = "menuone,noinsert,noselect"  -- Completion options
-vim.opt.showmode = false                           -- Don't show mode in command line
+vim.opt.showmode = false                           -- Do not show mode in command line
 vim.opt.pumheight = 10                             -- Popup menu height
 vim.opt.pumblend = 10                              -- Popup menu transparency
 vim.opt.winblend = 0                               -- Floating window transparency
-vim.opt.conceallevel = 0                           -- Don't hide markup
+vim.opt.conceallevel = 0                           -- do not hide markup
 vim.opt.concealcursor = ""                         -- Don't hide cursor line markup
 vim.opt.lazyredraw = true                          -- Don't redraw during macros
 vim.opt.synmaxcol = 300                            -- Syntax highlighting limit
@@ -54,16 +52,16 @@ vim.opt.swapfile = false                           -- Create swap files
 vim.opt.undofile = true                            -- Persistent undo
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir")  -- Undo directory
 vim.opt.updatetime = 150                           -- Faster completion
-vim.opt.timeoutlen = 150                           -- Key timeout duration
+vim.opt.timeoutlen = 800                           -- Key timeout duration
 vim.opt.ttimeoutlen = 200                          -- Key code timeout
-vim.opt.autoread = true                            -- Auto reload files changed outside vim
-vim.opt.autowrite = false                          -- Don't auto save
+vim.opt.autoread = false                           -- reload files changed outside vim
+vim.opt.autowrite = false                          -- auto save
 
 -- Behavior settings
-vim.opt.hidden = true                              -- Allow hidden buffers
-vim.opt.errorbells = false                         -- No error bells
-vim.opt.backspace = "indent,eol,start"             -- Better backspace behavior
-vim.opt.autochdir = false                          -- Don't auto change directory
+vim.opt.autochdir = false                          -- auto change directory
+vim.opt.backspace = "indent,eol,start"             -- backspace behavior
+vim.opt.errorbells = false                         -- no error bells
+vim.opt.hidden = true                              -- hidden buffers
 vim.opt.iskeyword:append("-")                      -- Treat dash as part of word
 vim.opt.path:append("**")                          -- include subdirectories in search
 vim.opt.selection = "exclusive"                    -- Selection behavior
@@ -71,23 +69,25 @@ vim.opt.mouse = "a"                                -- Enable mouse support
 vim.opt.clipboard:append("unnamedplus")            -- Use system clipboard
 vim.opt.modifiable = true                          -- Allow buffer modifications
 vim.opt.encoding = "utf-8"                         -- Set encoding
+vim.opt.virtualedit = "onemore"                    -- prevents moving to left (insert to normal)
 
--- Cursor settings
+-- cursor settings
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
--- Folding settings
+-- fold
 vim.opt.foldmethod = "expr"                        -- Use expression for folding
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"    -- Use treesitter for folding
 vim.opt.foldlevel = 99                             -- Start with all folds open
 
--- Split behavior
+-- split behavior
 vim.opt.splitbelow = true                          -- Horizontal splits go below
 vim.opt.splitright = true                          -- Vertical splits go right
 
 -- keybinds
--- Key mappings
 vim.g.mapleader = " "                              -- Set leader key to space
 vim.g.maplocalleader = " "                         -- Set local leader key (NEW)
+-- leader key should not move
+vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 
 -- Compile with leader + s
 vim.keymap.set('n', '<leader>c', ':w!<CR>:!compilerdoc "%:p"<CR>', { silent = true })
@@ -112,29 +112,29 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" }
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 
--- Better paste behavior
+-- yanking behaviour
 vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without yanking" })
-
--- Delete without yanking
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yanking" })
 
--- Buffer navigation
-vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
+-- buffer navigation
+vim.keymap.set("n", "<leader><Tab>",  ":bnext<CR>",     { desc = "next buffer" })
+vim.keymap.set("n", "<leader>bn",     ":bnext<CR>",     { desc = "next buffer" })
+vim.keymap.set("n", "<leader><Tab>p", ":bprevious<CR>", { desc = "prev buffer" })
+vim.keymap.set("n", "<leader>bp",     ":bprevious<CR>", { desc = "prev buffer" })
 
--- Better window navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+-- window navigation
+vim.keymap.set("n", "<leader>wh", "<C-w>h",  { desc = "Move to left window"   })
+vim.keymap.set("n", "<leader>wj", "<C-w>j",  { desc = "Move to bottom window" })
+vim.keymap.set("n", "<leader>wk", "<C-w>k",  { desc = "Move to top window"    })
+vim.keymap.set("n", "<leader>wl", "<C-w>l",  { desc = "Move to right window"  })
 
 -- Splitting & Resizing
-vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
-vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" })
-vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>",            { desc = "split vertically" })
+vim.keymap.set("n", "<leader>sh", ":split<CR>",             { desc = "split horizontal" })
+vim.keymap.set("n", "<C-Up>",   ":resize +2<CR>",           { desc = "inc window height" })
+vim.keymap.set("n", "<C-Down>", ":resize -2<CR>",           { desc = "dec window height" })
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>",  { desc = "dec window width" })
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "inc window width" })
 
 -- Move lines up/down
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
@@ -153,9 +153,19 @@ vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
 -- Better J behavior
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
--- Quick config editing
-vim.keymap.set("n", "<leader>rc", ":e $MYVIMRC<CR>", { desc = "Edit config" })
-vim.keymap.set("n", "<leader>rl", ":so $MYVIMRC<CR>", { desc = "Reload config" })
+-- reload edit config
+-- vim.keymap.set("n", "<leader>re", ":e $MYVIMRC<CR>", { desc = "Edit config" })
+-- vim.keymap.set("n", "<leader>rr", ":so $MYVIMRC<CR>", { desc = "Reload config" })
+vim.keymap.set("n", "<leader>rl",
+
+  function() 
+    vim.cmd("source $MYVIMRC") 
+    vim.notify("config reloaded")
+  end,
+{ desc = "Reload config" })
+
+-- filetype tweaks
+vim.g.tex_flavor = "latex"
 
 -- plugins
 vim.pack.add({
@@ -165,8 +175,8 @@ vim.pack.add({
     version = 'v2.5.0',  -- Git branch, tag or commit hash
 },
 {
-    src = 'https://github.com/hrsh7th/nvim-cmp',
-    version = 'v0.0.2',
+    src = 'https://github.com/saghen/blink.cmp',
+    version = 'v1.10.2',
 },
 {
     src = 'https://github.com/nvim-mini/mini.nvim',
@@ -183,26 +193,86 @@ vim.pack.add({
 {
     src = 'https://github.com/nvim-tree/nvim-tree.lua',
     version = 'v1.18.0',
+},
+{
+    src = 'https://github.com/folke/which-key.nvim',
+    version = 'v3.17.0',
 }
 --
 })
 
--- luasnip snippets
-require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/"})
-require("luasnip").config.set_config({
-  enable_autosnippets = true,         -- autotrigger snippets
-  store_selection_keys = "<Tab>",      -- trigger visual selection
+-- blinkcmp
+require("blink.cmp").setup({
+  snippets = { preset = "luasnip" },
+  keymap = {
+    preset = "default",
+    ["<Tab>"]      = { "snippet_forward", "select_next", "fallback" },
+    ["<S-Tab>"]    = { "snippet_backward", "select_prev", "fallback" },
+    ["<CR>"]       = { "accept", "fallback" },
+    ["<leader>lh"] = { "show", "show_documentation", "hide_documentation" },
+    ["<C-e>"]      = { "hide", "fallback" },
+    ["<C-b>"]      = { "scroll_documentation_up", "fallback" },
+    ["<C-f>"]      = { "scroll_documentation_down", "fallback" },
+  },
+  --
+  completion = {
+    documentation = {
+      auto_show = true,
+      auto_show_delay_ms = 500,
+    },
+    ghost_text = {
+      enabled = true,
+    },
+    list = {
+      selection = {
+        preselect = true,
+        auto_insert = true,
+      },
+    },
+  },
+
+  sources = {
+    default = { "lsp", "path", "snippets", "buffer" },
+  },
 })
 
-vim.cmd[[
-" Use Tab to expand and jump through snippets
-imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
-smap <silent><expr> <Tab> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<Tab>'
+-- luasnip snippets
+require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
 
-" Use Shift-Tab to jump backwards through snippets
-imap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>'
-smap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>'
-]]
+require("luasnip").config.set_config({
+  enable_autosnippets = true,
+  store_selection_keys = "<Tab>",
+})
+
+require("luasnip").filetype_extend("quarto", { "tex", "markdown" })
+-- require("luasnip").filetype_extend("quarto", { "markdown" })
+
+
+-- filetype " " uses {" "} snippets
+require("luasnip").filetype_extend("quarto", { "tex" })
+require("luasnip").filetype_extend("quarto", { "markdown" })
+
+--vim.cmd[[
+--" Use Tab to expand and jump through snippets
+--imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+--smap <silent><expr> <Tab> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<Tab>'
+--
+--" Use Shift-Tab to jump backwards through snippets
+--imap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>'
+--smap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>'
+--]]
+
+-- whichkey
+local wk = require("which-key")
+wk.add({
+  { "<leader>b", group = "buffer" },
+  { "<leader>f", group = "find" },
+  { "<leader>g", group = "git" },
+  { "<leader>l", group = "lsp" },
+  { "<leader>r", group = "run" },
+  { "<leader>w", group = "window" },
+})
+
 
 -- mini
 require('mini.comment').setup({
@@ -265,9 +335,9 @@ require("nvim-tree").setup({
   },
 })
 
-vim.keymap.set("n", "<leader>e", function()
-	require("nvim-tree.api").tree.toggle()
-end, { desc = "Toggle NvimTree" })
+--vim.keymap.set("n", "<leader>e", function()
+--	require("nvim-tree.api").tree.toggle()
+--erd, { desc = "Toggle NvimTree" })
 
 -- surround
 require('mini.surround').setup({
@@ -283,11 +353,7 @@ require('mini.starter').setup({
 
 -- vim tmux navigator
 
--- nvim-cmp
-
--- functions
-
--- Reload Config
+-- reload configuration
 vim.api.nvim_create_user_command('Reloadconfig', 'source $MYVIMRC', {})
 
 -- highlight yanked text
@@ -326,14 +392,15 @@ vim.opt.wildignore:append({
   "*.bin", "*.img", "*.iso", 
 })
 
--- autocmds
 
 -- themes 
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("tokyonight-night")
 
-local function set_transparent() -- set UI component to transparent
+-- setuii component to transparent
+local function set_transparent()
 	local groups = {
+    --
 		"Normal",
 		"NormalNC",
 		"EndOfBuffer",
@@ -346,12 +413,15 @@ local function set_transparent() -- set UI component to transparent
 		"TabLineFill",
 		"TabLineSel",
 		"ColorColumn",
-    -- nvim tree background
+    --
     "NvimTreeEndOfBuffer",
     "NvimTreeNormal",
     "NvimTreeNormalNC",
     "NvimTreeWinSeparator",
     "NvimSignColumn",
+    --
+    "WhichKeyNormal",
+    --
 	}
 	for _, g in ipairs(groups) do
 		vim.api.nvim_set_hl(0, g, { bg = "none" })

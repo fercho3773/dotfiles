@@ -61,3 +61,7 @@ export FZF_DEFAULT_OPTS=" \
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview '$_FZF_PREVIEW_CMD'"
 
+# eza
+#export EZA_STRICT # makes eza error when two command-line options are incompatible
+#export EZA_ICONS_AUTO
+

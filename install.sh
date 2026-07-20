@@ -16,6 +16,7 @@ for file in "$dots/bin"/*; do
 done
 
 # single files
+#ln -sfn "$dots/.asoundrc"     "$HOME/.asoundrc"
 ln -sfn "$dots/.xinitrc"      "$HOME/.xinitrc"
 ln -sfn "$dots/.Xresources"   "$HOME/.Xresources"
 ln -sfn "$dots/.zshrc"        "$HOME/.zshrc"
@@ -27,12 +28,13 @@ for x in \
   mpv \
   nvim \
   tmux \
-  zathura  \
+  zathura \
   zsh
 do
-  mkdir -p $x 
+  mkdir -p "$conf/$x" 
   ln -sfn "$dots/$x" "$conf/x"
 done
+unset x
 
 # Notes:
 # ln : makes links between files

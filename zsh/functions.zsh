@@ -1,7 +1,17 @@
 # functions
 
-netinfo ()
-{
+# vifm set working directory after exit
+vicd()  {
+    local dst="$(command vifm --choose-dir - "$@")"
+    if [ -z "$dst" ]; then
+        echo 'Directory picking cancelled/failed'
+        return 1
+    fi
+    cd "$dst"
+}
+
+# show ip address
+netinfo ()  {
 	echo "--------------- Network Information ---------------"
 	/sbin/ifconfig | awk /'inet addr/ {print $2}'
 	echo ""
@@ -36,10 +46,14 @@ paq() {
   fi
 }
 
+# list manually installed
+pal() { 
+  xpkg -m | column
+}
 
-pal() { xpkg -m | column; } # list manually installed
-
-pam() { xbps-pkgdb -m $@; } # hold package
+pam() { 
+  xbps-pkgdb -m $@
+} # hold package
 
 # pkg number
 pan() {
@@ -119,10 +133,10 @@ zle -N _fzf_file_no_hidden
 
 
 # search local bin
-se() {
-	choice="$(find ~/.local/bin -mindepth 2 -printf '%P\n' | fzf)"
-	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
-}
+# se() {
+#	choice="$(find ~/.local/bin -mindepth 2 -printf '%P\n' | fzf)"
+#	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
+#}
 
 # extract zip files
 extract() {
@@ -138,4 +152,6 @@ extract() {
 }
 
 # compress into a zip file
-
+# compress() {
+#
+#}
