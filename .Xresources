@@ -10,6 +10,7 @@ Xft.dpi: 100
 
 st.borderpx: 5
 st.alpha: 0.85
+st.font: Hack Nerd Font Mono: size=12
 
 *background: #181f21
 *foreground: #dadada
@@ -27,7 +28,7 @@ st.alpha: 0.85
 !*color10: #9bdead
 
 ! DarkYellow + Yellow
-!*color3:  #e5c76b
+!!*color3:  #e5c76b
 !*color11: #f4d67a
 
 ! DarkBlue + Blue
