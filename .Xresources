@@ -10,7 +10,7 @@ Xft.dpi: 100
 
 st.borderpx: 5
 st.alpha: 0.80
-st.font: Hack Nerd Font Mono: size=12
+st.font: Hack Nerd Font Mono: size=14
 
 *background: #181f21
 *foreground: #dadada

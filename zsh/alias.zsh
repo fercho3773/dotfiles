@@ -63,7 +63,8 @@ alias \
 --scroll-step 150 \
 "
 # file manager
-[ -x "$(command -v vifm)" ]  && alias fm="vifm"
+# vifm, lf, ranger, noice,  etc
+[ -x "$(command -v xfe)" ]  && alias fm="xfe"
 
 # require super user
 for x in \

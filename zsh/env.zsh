@@ -10,7 +10,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="st"
 export TERMINAL_PROG="st"
-export BROWSER="firefox"
+export BROWSER="librewolf"
 
 # manpager
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -54,8 +54,8 @@ export FZF_DEFAULT_OPTS=" \
   --height=90% \
   --highlight-line
   --layout=reverse \
-  --margin=1 \
-  --padding=1 \
+  --margin=3 \
+  --padding=0 \
 "
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

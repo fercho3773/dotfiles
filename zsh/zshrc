@@ -9,7 +9,6 @@ alias reloadzsh="source ~/.zshrc"
 zmodload zsh/complist
 autoload -Uz compinit && compinit
 autoload -U colors && colors
-#autoload -U tetris
 
 setopt autocd               # type a dir to cd 
 setopt auto_param_slash     # add a "/" instead of treadline on dirs
@@ -23,13 +22,11 @@ stty stop undef             # disables terminal freezing ctrl-s
 # if not running, do not do anything
 [ -z "$PS1" ] && return
 
+#
 ..() { cd ..; ls }
 ...() { cd ../..; ls }
 ....() { cd ../../..; ls }
-
-# evals
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
+.....() { cd ../../../..; ls }
 
 # vi mode
 bindkey -v
@@ -48,27 +45,36 @@ compinit
 _comp_options+=(globdots) # include hidden files
 
 # Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
+#bindkey -M menuselect 'h' vi-backward-char
+#bindkey -M menuselect 'k' vi-up-line-or-history
+#bindkey -M menuselect 'l' vi-forward-char
+#bindkey -M menuselect 'j' vi-down-line-or-history
+#bindkey -v '^?' backward-delete-char
 
-# fzf
-fzfcleanfind() {
-  clear | fd --type f --exclude .git --exclude dist | fzf
-}
-zle -N fzfcleanfind
-bindkey '^F' fzfcleanfind
+# evals
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
-#[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/env.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/env.zsh"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/alias.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/alias.zsh"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions.zsh"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/prompt.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/prompt.zsh"
-#[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/nnn.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/nnn.zsh"
+# source zsh config files
+for x in \
+  env \
+  alias \
+  functions \
+  prompt \
+  packages
+do
+  [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/$x.zsh" ] \
+    && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/$x.zsh"
+done
+unset x
 
-# Fish-like syntax highlighting and autosuggestions and history
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+# zsh plugins
+for x in \
+  zsh-autosuggestions/zsh-autosuggestions \
+  zsh-syntax-highlighting/zsh-syntax-highlighting \
+  zsh-history-substring-search/zsh-history-substring-search \
+  zsh-vi-mode/zsh-vi-mode.plugin
+do
+  source "/usr/share/zsh/plugins/$x.zsh"
+done
+unset x
