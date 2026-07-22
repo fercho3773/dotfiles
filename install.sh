@@ -21,6 +21,8 @@ ln -sfn "$dots/.xinitrc"      "$HOME/.xinitrc"
 ln -sfn "$dots/.Xresources"   "$HOME/.Xresources"
 ln -sfn "$dots/.zshrc"        "$HOME/.zshrc"
 
+ln -sfn "$dots/starship.toml" "$conf/starship.toml"
+
 # .config
 for x in \
   feh \

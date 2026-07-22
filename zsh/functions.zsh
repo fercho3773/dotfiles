@@ -23,93 +23,51 @@ netinfo ()  {
 	echo "---------------------------------------------------"
 }
 
-# xbps helper
-# Credits to kitu
-# https://www.youtube.com/watch?v=CbtKcPpmP5A
-
-# package cleanup
-pac() {
-  echo "xbps-remove -yo && xbps-remove -OO && vkpurge rm all" 
-  xbps-remove -yo && xbps-remove -OO && vkpurge rm all ; 
-}
-
-# package information
-#paq() { [ -n "$1" ] && xbps-query -RS $@ ; } #query
-paq() {
-  if [ -z "$2" ]; then 
-    clear && echo "xbps-query -R"
-    PACKAGE="$(xpkg | fzf --multi --query="$1")"
-    [ -n "$PACKAGE" ] && xbps-query -R $PACKAGE
-  else
-    echo "xbps-remove -Ry"
-    xbps-remove -Ry "$@"
-  fi
-}
-
-# list manually installed
-pal() { 
-  xpkg -m | column
-}
-
-pam() { 
-  xbps-pkgdb -m $@
-} # hold package
-
-# pkg number
-pan() {
-  echo "xpkg | wc -l"
-  xpkg | wc -l
-}
-
-# pkg update
-pau() { 
-  echo "xbps-install -Suy"
-  xbps-install -Suy
-}
-
-# pkg remove
-par() {
-  if [ -z "$1" ]; then 
-    clear && echo "xbps-remove -Ry"
-    PACKAGE="$(xpkg | fzf --multi --query="$1")"
-    [ -n "$PACKAGE" ] && xbps-remove -Ry $PACKAGE
-  else
-    xbps-remove -Ry "$@"
-  fi
-}
-
-# find or install
-paf() {
-  if [ -z "$2" ]; then
-    clear && echo "xbps-query -RS"
-    PACKAGE="$(xpkg -a | fzf --multi --query="$*" --preview="xbps-query -RS {}")"
-    [ -n "$PACKAGE" ] && xbps-install -Sy $PACKAGE
-  else
-    xbps-install -Sy "$@"
-  fi
-}
-
-# tmux stuff
+# tmux helper
 tmux () {
-  case "$1" in
-        "as")
-            shift
-            command tmux attach-session -t "$@"
-            ;;
-        "ks")
-            shift
-            command tmux kill-session -t "$@"
-            ;;
-        "ns")
-            shift
-            command tmux new-session -s "$@"
-            ;;
-        *)
-            command tmux "$@"
-            ;;
-  esac
+case "$1" in
+"as")
+  shift
+  if [[ -z "$1" ]]; then
+  tmux list-session \
+    | fzf --header "tmux attach-session -t" \
+    | sed 's/:.*//' \
+    | read xyz && tmux attach-session -t "$xyz" || unset xyz
+  else
+    tmux attach-session -t "$1"
+  fi
+  ;;
+"ks")
+  shift
+  if [[ -z "$1" ]]; then
+  tmux list-session \
+    | fzf --header "tmux kill-session -t" \
+    | sed 's/:.*//' \
+    | read xyz && tmux kill-session -t "$xyz" || unset xyz
+  else
+    tmux kill-session -t "$1" && echo "Killed tmux session: $1"
+  fi
+  ;;
+"ns")
+  shift
+  command tmux new-session -s "$@"
+  ;;
+"ls")
+  shift
+  command tmux list-sessions
+  ;;
+*)
+  command tmux "$@"
+  ;;
+esac
 }
 
+# fzf
+fzfcleanfind() {
+  clear | fd --type f --exclude .git --exclude dist | fzf
+}
+zle -N fzfcleanfind
+bindkey '^F' fzfcleanfind
 
 # fzf fuzzy finder
 _fzf_file_no_hidden() {

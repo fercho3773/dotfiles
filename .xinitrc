@@ -1,10 +1,7 @@
 #! /bin/bash
 
-#xrandr --dpi 96 &
 xset -r rate 90 75 &
 setxkbmap -layout 'es' &
-# setxkbmap -option "caps:swapescape,altwin:left_alt_win" & 
-# swap capslock w/ escape and swap super with lalt
 
 clipmenud &
 dunst &
@@ -19,19 +16,21 @@ sct 3200 &
 #[ -f "$HOME/.Xmodmap" ]     && xmodmap "$HOME/.Xmodmap"
 [ -f "$HOME/.Xresources" ]  && xrdb -merge "$HOME/.Xresources"
 [ -f "$HOME/wall.jpg" ]     && xwallpaper --zoom "$HOME/wall.jpg"
-#[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap 
-#[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
-#[[ -f ~/wall.jpg ]]    && xwallpaper --zoom ~/wall.jpg
 
 #/usr/bin/pipewire &
 #/usr/bin/pipewire-pulse &
 
-pipewire &
-pipewire-pulse &
-wireplumber &
+#pipewire &
+#pipewire-pulse &
+#wireplumber &
 
+# dbus
 dbus-run-session dwm 
 
+# nodbus
+dwm
+
+# This is not required when using seamless-restart patches for dwm
 #while type dwm > /dev/null; do
 #	dwm && continue || break
 #done

@@ -1,14 +1,16 @@
-#!/bin/sh
-# open manpages from dmenu
-
+#!/usr/bin/env  bash
 set -eu
 
-manpage=$(man -k . | awk '{print $1}' | dmenu -i -l 20 -p "Man page:")
-mann=${manpage%%\(*}
-# the %% cuts the text string at the first parenthesis (,
-# e.g. less(1) converts into less
- 
-# Open selected man page in terminal
-if [ -n "$manpage" ]; then
-    $TERMINAL -e man "$mann" | notify-send "Viewing man for $manpage."
+# open manpages from dmenu
+manpage=$(man . -k | sed 's|.*/||; s/\.[0-9]$//' | dmenu -i -l 30 -p "Available manual pages:")
+man_route=$(man -w $manpage)
+
+# compile  and pipe selected man page into zathura
+# open man page in  terminal  
+if [[ $(command -v zathura) &&  $(command -v groff) ]] then
+  notify-send "Viewing manual for $manpage."
+  groff -dpi 200 -Tpdf -man $man_route | zathura -
+else
+  notify-send "Viewing manual for $manpage."
+  $TERMINAL -e man "$man"
 fi
