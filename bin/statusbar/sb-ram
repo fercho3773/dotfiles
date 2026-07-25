@@ -1,3 +1,16 @@
 #!/bin/sh
 
-free -h --giga  | awk 'NR==2{print $3}'
+# statusbar script for showing ram usage
+
+case $BLOCK_BUTTON in
+1) notify-send \
+  "Ram" \
+  "$( cat /proc/meminfo \
+  | grep "Mem" \
+  | awk '{printf "%s: %.0f mb\n", $1, $2/1024}' \
+  || exit
+  )"
+;;
+esac
+
+free -h --giga  | awk 'NR==2{print $3}' 

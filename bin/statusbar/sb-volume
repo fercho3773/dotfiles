@@ -14,13 +14,13 @@ case $BLOCK_BUTTON in
 ;;
 3) 
   notify-send "Audio:" && \
-  notify-send "Audio stuff goes here" || exit
+  notify-send "audio_stat should go here" || exit
 ;;
 esac
 
 # this could be better ...
 if [ "$vmute" = "[off]" ]; then
-    echo "MUTE" && exit
+  echo "MUTE" && exit
 elif [ "$vmute" = "[on]" ]; then
   if [ "$vol" -le 50 ];    then echo "v.$vol"
   elif [ "$vol" -le 100 ]; then echo "V.$vol"
