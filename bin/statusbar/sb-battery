@@ -35,7 +35,7 @@ for battery in /sys/class/power_supply/BAT?*; do
 done
 
 if numbat = if [ "$X" -eq 1 ]; then
-  case "$(cat "$battery/status" 2>&1)" in      # Icon and capacity
+  case "$(cat "$battery/status" 2>&1)" in
 		"Full") status="⚡" ;;
 		"Discharging") status="🔋" ;;
 		"Charging") status="🔌" ;;
