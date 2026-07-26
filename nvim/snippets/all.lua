@@ -17,16 +17,14 @@ return {
   -- as =({})     :: autosnipppet
 
   -- symbols
-  as({trig= "dpipe"    },  { t("||") }),
-  as({trig= "ppipe"     },  { t("|")  }),
-  as({trig= "sll"       },  { t("/")  }),
-  as({trig= "rll"       },  { t("\\") }),
+  as({trig= "dpipe" },  { t("||") }),
+  as({trig= "ppipe" },  { t("|")  }),
+  as({trig= "sll"   },  { t("/")  }),
+  as({trig= "ddll"  },  { t("$$") }),
 
-  s({trig= "double_dollar"      },  { t("$$") }),
-  
+  s({trig= "double_dollar"  },  { t("$$") }),
+
   -- spanish
-  -- as({trig= "tracion"  },  { t("tración") }),
-
 
   -- english
 }
