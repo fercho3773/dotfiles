@@ -1,6 +1,6 @@
 #! /bin/bash
 
-xset -r rate 90 75 &
+xset r rate 220 75 &
 setxkbmap -layout 'es' &
 
 clipmenud &
@@ -17,18 +17,12 @@ sct 3200 &
 [ -f "$HOME/.Xresources" ]  && xrdb -merge "$HOME/.Xresources"
 [ -f "$HOME/wall.jpg" ]     && xwallpaper --zoom "$HOME/wall.jpg"
 
-#/usr/bin/pipewire &
-#/usr/bin/pipewire-pulse &
-
-#pipewire &
+pipewire &
 #pipewire-pulse &
 #wireplumber &
 
-# dbus
-dbus-run-session dwm 
-
-# nodbus
-dwm
+dbus-run-session dwm  # dbus
+#dwm # nodbus
 
 # This is not required when using seamless-restart patches for dwm
 #while type dwm > /dev/null; do
