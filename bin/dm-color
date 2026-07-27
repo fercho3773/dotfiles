@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# dmenu script to change cwal colors
+# to do, add pywal support
+
+# 1. cwal gives standard output all the themes
+# 2. inverse grep to remove useless text
+# 3. pipe into dmenu or fzf
+# 4. remove everything after the dot
+# 5. select theme with xargs and cwal
+# 6. run refreshwm script
+
+cwal --list-themes \
+  | grep -v -e "Light themes" -e "Dark themes" -e "Themes in" \
+  | dmenu -i -l 20 \
+  | sed 's/\..*$//' \
+  | xargs -I {} cwal --theme {} && refreshwm \
+  || notify-send 'Could not set any theme'
