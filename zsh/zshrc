@@ -57,6 +57,7 @@ eval "$(starship init zsh)"
 
 # source zsh config files
 for x in \
+  fzf \
   env \
   alias \
   functions \
