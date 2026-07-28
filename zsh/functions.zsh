@@ -1,5 +1,15 @@
 # functions
 
+# find man pages
+#fman() {
+#    man -k . | 
+#    fzf -q "$1" --prompt='man> ' --preview $'echo {} | 
+#    tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | 
+#    xargs -r man' |
+#    tr -d '()' |
+#    awk '{printf "%s ", $2} {print $1}' |
+#    xargs -r man
+
 # vifm set working directory after exit
 vicd()  {
     local dst="$(command vifm --choose-dir - "$@")"
@@ -62,16 +72,6 @@ case "$1" in
 esac
 }
 
-# find man pages
-#fman() {
-#    man -k . | 
-#    fzf -q "$1" --prompt='man> ' --preview $'echo {} | 
-#    tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | 
-#    xargs -r man' |
-#    tr -d '()' |
-#    awk '{printf "%s ", $2} {print $1}' |
-#    xargs -r man
-
 
 # search local bin
 # se() {
@@ -79,20 +79,54 @@ esac
 #	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
 #}
 
+# compress into a zip file
+# compress() {
+
 # extract zip files
 extract() {
+  local fail() { echo "Could not extract file" }
+  local pass_msg() { echo "File requires a password" }
   case $1 in
-    *.tar.gz|*.tgz) tar -xzf "$1";;
-    *.tar.bz2|*.tbz2) tar -xjf "$1";;
-    *.zip) unzip "$1";;
-    *.rar) unrar x "$1";;
-    *.7z) 7z "$1";; 
-    *.iso) 7z "$1";; 
-    *) echo "Unknown archive format";;
+  *.tar.gz|*.tgz) tar -xzf "$1" || fail;;
+  *.tar.bz2|*.tbz2) tar -xjf "$1" || fail;;
+  *.zip) unzip "$1" || fail;;
+  *.rar) unrar x "$1" || fail;;
+  *.7z) 7z "$1" || fail;; 
+  *.iso) 7z "$1" || fail;; 
+  *) echo "Unknown archive format";;
   esac
 }
 
 # compress into a zip file
 # compress() {
-#
+
+# search local bin
+# se() {
+#	choice="$(find ~/.local/bin -mindepth 2 -printf '%P\n' | fzf)"
+#	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
 #}
+
+# measure zsh startup time
+timesh() {
+  local output
+  TIMEFMT='%*E'
+  start=$( { time zsh -i -c exit; } 2>&1 )
+  printf "Zsh startup time: %.2f ms\n" "$(( start * 1000 ))"
+}
+
+
+# interactive cd using zoxide & fzf
+z() {
+case "$1" in
+"")
+  local dir=$(  zoxide query --list --score | fzf \
+        --nth 2.. --tac --no-sort --query "$*" \
+        --bind 'enter:become:echo {2..}'
+  ) && cd "$dir"
+;;
+*)  __zoxide_z "$@" && clear && pwd
+;;
+esac
+}
+
+

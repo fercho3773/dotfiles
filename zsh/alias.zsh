@@ -32,21 +32,20 @@ alias \
   xloc-install="xbps-install -R hostdir/binpkgs" \
   qmk="make clean && sudo make install" \
 
-
 # if exists, do alias
 [ -x "$(command -v btop)" ]     && alias top="btop"
 [ -x "$(command -v nvim)" ]     && alias vim="nvim" vimdiff="nvim -d"
 [ -x "$(command -v pfetch)" ]   && alias fetch="pfetch"
 [ -x "$(command -v zathura)" ]  && alias pdf="zathura"
 
-[ -x "$(command -v grep)" ]  && compdef rg=grep && alias \
+[ -x "$(command -v grep)" ] && compdef rg=grep \
+  && alias \
   grep="rg --color=auto"
 
 [ -x "$(command -v bat)" ]  && \
   alias cat="bat"
 
-[ -x "$(command -v eza)" ] && \
-  compdef eza=ls  && \
+[ -x "$(command -v eza)" ] && compdef eza=ls  && \
   alias \
   tree="clear && eza --tree --icons --level=3" \
   lah="clear && eza -lah --git --group-directories-first" \
@@ -84,10 +83,7 @@ for x in \
     pacman \
     vsv \
     vkpurge \
-    xbps-pkgdb \
-    xbps-reconfigure \
-    xbps-remove \
-    xbps-install
+    xbps-pkgdb xbps-reconfigure xbps-remove xbps-install
 do
   if command -v doas >/dev/null 2>&1; then
      alias $x="doas $x"
@@ -96,4 +92,3 @@ do
   fi
 done
 unset  x
-

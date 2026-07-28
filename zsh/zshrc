@@ -4,10 +4,16 @@ SAVEHIST=99000000
 HISTSIZE=99000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 
-alias reloadzsh="source ~/.zshrc"
+alias reloadsh="source ~/.zshrc"
+
+timesh() {
+  local output
+  TIMEFMT='%*E'
+  start=$( { time zsh -i -c exit; } 2>&1 )
+  printf "Zsh startup time: %.2f ms\n" "$(( start * 1000 ))"
+}
 
 zmodload zsh/complist
-autoload -Uz compinit && compinit
 autoload -U colors && colors
 
 setopt autocd               # type a dir to cd 
@@ -37,9 +43,10 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^E' edit-command-line
 
-# basic tab completion
-autoload -U compinit
+# completion
+autoload -Uz compinit
 zstyle ':completion:' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # include hidden files
@@ -57,10 +64,11 @@ eval "$(starship init zsh)"
 
 # source zsh config files
 for x in \
-  fzf \
-  env \
   alias \
+  fzf \
   functions \
+  env \
+  keybindings \
   prompt \
   packages
 do
