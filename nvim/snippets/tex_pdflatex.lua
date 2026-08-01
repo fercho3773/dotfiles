@@ -40,8 +40,11 @@ return {
     t("\\footnote{"), i(1), t("}"), i(0),
   }),
 
-  as({ trig = "newpage" }, { t("\\newpage") }),
-  as({ trig = "clearpage" }, { t("\\clearpage") }),
+  s({ trig = "newpage" }, { t("\\newpage") }),
+  s({ trig = "clearpage" }, { t("\\clearpage") }),
+
+  as({ trig = "npage" }, { t("\\newpage") }),
+  as({ trig = "clpage" }, { t("\\clearpage") }),
 
   s({ trig = "doc" }, {
     t({
@@ -271,4 +274,13 @@ return {
     t("\\url{"), i(1), t("}"), i(0),
   }),
 
+  --- math mode (latex only)
+  -- equation
+  as({ trig = ".eq", condition = lb }, {
+    t({ "\\begin{equation}", "" }),
+    i(1),
+    t({ "", "\\end{equation}" }),
+    i(0),
+    --
+  }),
 }

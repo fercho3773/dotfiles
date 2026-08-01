@@ -60,7 +60,8 @@ as({ trig = ".im" }, { t("$"), i(1), t("$"), i(0) }),
 as({ trig = ".mi" }, { t("$"), i(1), t("$"), i(0) }),
 
 -- display math
-as({ trig = ".mm" }, { t({ "$$", "" }), i(1), t({ "", "$$" }), i(0) }),
+as({ trig = ".mm", condition = lb }, { t({ "$$", "" }), i(1), t({ "", "$$" }), i(0) }),
+as({ trig = ".eq", condition = lb }, { t({ "$$", "" }), i(1), t({ "", "$$" }), i(0) }),
 
 -- web links
 -- example: [Github.com](https://github.com)

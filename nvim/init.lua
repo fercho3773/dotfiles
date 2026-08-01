@@ -51,9 +51,9 @@ vim.opt.writebackup = false                        -- create backup before writi
 vim.opt.swapfile = false                           -- create swap files
 vim.opt.undofile = true                            -- persistent undo
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir")  -- undo directory
-vim.opt.updatetime = 150                           -- faster completion
-vim.opt.timeoutlen = 250                           -- key timeout duration
-vim.opt.ttimeoutlen = 250                          -- key code timeout
+vim.opt.updatetime = 250                           -- faster completion
+vim.opt.timeoutlen = 400                           -- key timeout duration
+vim.opt.ttimeoutlen = 20                          -- key code timeout
 vim.opt.autoread = false                           -- reload files changed outside vim
 vim.opt.autowrite = false                          -- auto save
 
@@ -182,9 +182,13 @@ vim.pack.add({
     src = 'https://www.github.com/ibhagwan/fzf-lua',
     version = '532d463f5c83595192fe740572d8fd6902b2217a',
 },
+--{
+--    src = 'https://github.com/saghen/blink.cmp',
+--    version = 'v1.10.2',
+--},
 {
-    src = 'https://github.com/saghen/blink.cmp',
-    version = 'v1.10.2',
+    src = 'https://github.com/hrsh7th/nvim-cmp',
+    version = '2ffe79f1f021def8dd1fcd81deb16f1bb0d989f3',
 },
 {
     src = 'https://github.com/nvim-mini/mini.nvim',
@@ -223,69 +227,68 @@ vim.pack.add({
 --})
 
 -- blinkcmp
-require("blink.cmp").setup({
-  snippets = { preset = "luasnip" },
-  keymap = {
-    preset = "default",
-    ["<Tab>"]      = { "snippet_forward", "select_next", "fallback" },
-    ["<S-Tab>"]    = { "snippet_backward", "select_prev", "fallback" },
-    ["<CR>"]       = { "accept", "fallback" },
-    ["<leader>lh"] = { "show", "show_documentation", "hide_documentation" },
-    ["<C-e>"]      = { "hide", "fallback" },
-    ["<C-b>"]      = { "scroll_documentation_up", "fallback" },
-    ["<C-f>"]      = { "scroll_documentation_down", "fallback" },
-  },
-  --  i
-  window = {
-    max_height = 10,
-    max_width = 60,
-    border = 'rounded',
-    winblend = 0,
-    winhighlight = 'Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder',
-    -- Posición personalizada
-    autocomplete_window = {
-      enabled = true,
-    },
-  },
-  --
-  --
-  completion = {
-    documentation = {
-      auto_show = true,
-      auto_show_delay_ms = 1200,
-    },
-    ghost_text = {
-      enabled = true,
-    },
-    list = {
-      selection = {
-        preselect = false,
-        auto_insert = true,
-      },
-    },
-    menu = {
-      auto_show = false,
-    },
-},
+-- require("blink.cmp").setup({
+-- snippets = { preset = "luasnip" },
+-- keymap = {
+--   preset = "default",
+--   ["<Tab>"]      = { "snippet_forward", "select_next", "fallback" },
+--   ["<S-Tab>"]    = { "snippet_backward", "select_prev", "fallback" },
+--   ["<CR>"]       = { "accept", "fallback" },
+--   ["<leader>lh"] = { "show", "show_documentation", "hide_documentation" },
+--   ["<C-e>"]      = { "hide", "fallback" },
+--   ["<C-b>"]      = { "scroll_documentation_up", "fallback" },
+--   ["<C-f>"]      = { "scroll_documentation_down", "fallback" },
+-- },
+-- --
+-- window = {
+--   max_height = 10,
+--   max_width = 60,
+--   border = 'rounded',
+--   winblend = 0,
+--   winhighlight = 'Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder',
+--   -- Posición personalizada
+--   autocomplete_window = {
+--     enabled = true,
+--   },
+-- },
+-- --
+-- completion = {
+--   documentation = {
+--     auto_show = true,
+--     auto_show_delay_ms = 300,
+--   },
+--   ghost_text = {
+--     enabled = true,
+--   },
+--   list = {
+--     selection = {
+--       preselect = false,
+--       auto_insert = false,
+--     },
+-- },
+-- --
+-- menu = {
+--   auto_show = true,
+-- },
+-- --
+-- },
+--   sources = {
+--     -- default = { "lsp", "path", "snippets", "buffer" },
+--     default = { "snippets" },
+--   },
+-- })
 
-
-  sources = {
-    -- default = { "lsp", "path", "snippets", "buffer" },
-    default = { "snippets" },
-  },
-})
-
--- fzf
-require("fzf-lua").setup({
-  fzf_colors = { true },
-  fzf_opts = {
-    ["--height"]         = "80%",
-  },
-  keymaps = {
-      ["<leader>ff"]  = "files",
-      ["<leader>fg"]  = "live_grep",
-  },
-})
+-- -- fzf
+-- require("fzf-lua").setup({
+--   fzf_colors = { true },
+--   fzf_opts = {
+--     ["--height"]         = "80%",
+--   },
+--   keymaps = {
+--       ["<leader>ff"]  = "files",
+--       ["<leader>fg"]  = "live_grep",
+--   },
+-- })
 
 -- luasnip snippets
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
@@ -298,6 +301,8 @@ require("luasnip").config.set_config({
 -- extend filetypes for snippets
 local extft=require("luasnip").filetype_extend
 extft( "quarto", { "tex", "markdown" })
+extft( "latex", { "tex_pdflatex", "tex" })
+extft( "tex", { "tex_pdflatex", "tex" } )
 --require("luasnip").filetype_extend("quarto", { "markdown" })
 
 --vim.cmd[[
