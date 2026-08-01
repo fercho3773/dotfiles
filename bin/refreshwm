@@ -1,20 +1,35 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# SIGNHUP is for seamless restart patch
-pkill -HUP dwm || notify-send "Failed HUP on dwm"
-sleep 0.05
-
-# these restarts itself using SIGUSR1
+# SIGHUP is for seamless restart patch
 for x in \
+  dwm
+do
+  pkill -HUP $x | notify-send "Sent HUP on $x" || notify-send "Failed HUP on $x"
+done
+unset x
+
+# restart using SIGUSR1
+for x in \
+  dwmblocks \
   st \
   sxhkd \
   picom
 do
-  pkill -USR1 "$x" || notify-send "Failed USR1 on $x"
+  sleep 0.05
+  pkill -USR1 "$x" | notify-send "Sent USR1 on $x" || notify-send "Failed USR1 on $x"
 done
 unset x
 
-#[ -f "$HOME/.Xresources" ]  && xrdb -merge "$HOME/.Xresources"
+# send SIGUSR2
+for x in \
+  dunst
+do
+  sleep 0.05
+  pkill -USR2 "$x" | notify-send "Sent USR2 on $x" || notify-send "Failed USR2 on $x"
+done
+unset x
 
-notify-send 'refreshed window manager'
+[ -f "$HOME/.Xresources" ]  && xrdb -merge "$HOME/.Xresources"
+
+notify-send 'Refreshed window manager'
