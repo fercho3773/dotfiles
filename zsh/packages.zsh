@@ -1,7 +1,7 @@
 # xbps helper
 # To do:
 # 1. Add more distros (pacman,dnf,apt,etc)
-# 2. Declare this packages as variables
+# 2. Declare this functions  as variables
 # install_cmd
 # remove_cmd
 # preview_cmd
@@ -70,8 +70,10 @@ pan() {
 }
 
 # update
-pau() { 
-  echo "Update (xbps-install -Suy)"
+pau() {
+  clear
+  echo ""
+  echo "Update packages (xbps-install -Suy)"
   xbps-install -Suy
 }
 

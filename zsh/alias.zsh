@@ -18,6 +18,8 @@ alias \
 
 # abbreviations 
 alias \
+  cls="clear" \
+  lg="lazygit" \
   lah="clear && ls -lah" \
   psa="ps aux" \
   cls="clear" \
