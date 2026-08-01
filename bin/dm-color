@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 # dmenu script to change cwal colors
 # to do, add pywal support
 
@@ -12,7 +14,7 @@
 
 cwal --list-themes \
   | grep -v -e "Light themes" -e "Dark themes" -e "Themes in" \
-  | dmenu -i -l 20 \
+  | dmenu -l 20 \
   | sed 's/\..*$//' \
   | xargs -I {} cwal --theme {} && refreshwm \
   || notify-send 'Could not set any theme'
