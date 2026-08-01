@@ -11,9 +11,11 @@ $character
 add_newline = false
 
 [character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
-vimcmd_symbol = "[❮](bold green)"
+success_symbol = "[❯❯](bold green)"
+error_symbol = "[x❯](bold red)"
+vimcmd_symbol = "[n❮](bold green)"
+vimcmd_replace_symbol = "[r❮](bold purple)"
+vimcmd_visual_symbol  = "[v❮](bold yellow)"
 
 [directory]
 style = "bold cyan"

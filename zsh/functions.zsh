@@ -89,6 +89,7 @@ extract() {
   case $1 in
   *.tar.gz|*.tgz) tar -xzf "$1" || fail;;
   *.tar.bz2|*.tbz2) tar -xjf "$1" || fail;;
+  *.tar.xz) tar -xvf "$1" || fail;;
   *.zip) unzip "$1" || fail;;
   *.rar) unrar x "$1" || fail;;
   *.7z) 7z "$1" || fail;; 
