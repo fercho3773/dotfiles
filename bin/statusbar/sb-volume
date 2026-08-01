@@ -22,9 +22,12 @@ esac
 if [ "$vmute" = "[off]" ]; then
     echo "MUTE" && exit
 elif [ "$vmute" = "[on]" ]; then
-  if [ "$vol" -le 50 ];    then echo "v.$vol"
-  elif [ "$vol" -le 100 ]; then echo "V.$vol"
+  if [ "$vol" -le 50 ]; then 
+    echo "v.$vol"
+elif [ "$vol" -le 100 ]; then 
+    echo "V.$vol"
 else
     echo "X" && 
     notify-send "Check sound"
+  fi
 fi
