@@ -1,7 +1,5 @@
 #!/bin/sh
 
-killall -s USR1 dwm#!/bin/sh
+# to do: add a case in, for various window managers
 
-killall -s USR1 dwm#!/bin/sh
-
-killall -s USR1 dwm
+pkill -s USR1 dwm || pkill dbus-run-session
