@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 options="Lock\nLogout\nSuspend\nShutdown\nReboot"
 
-chosen=$(echo -e "$options" | dmenu -i -p "Power Menu:")
+chosen=$(echo -e "$options" | dmenu -p "Power Menu:")
 
 if command -v systemctl >/dev/null 2>&1; then
     sc="systemctl"
