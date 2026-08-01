@@ -22,6 +22,8 @@ return {
   --as({ trig = "latex"    },      { t("\\LaTeX") }),
   
   -- greek letters
+  as({ trig = "llamb" },      { t("\\lambda") }),
+  
   s({ trig = "alp"    },      { t("\\alpha") }),
   s({ trig = "beta"   },      { t("\\beta") }),
   s({ trig = "gamma"  },      { t("\\gamma") }),
@@ -34,7 +36,7 @@ return {
   s({ trig = "vtheta" },      { t("\\vartheta") }),
   s({ trig = "iota"   },      { t("\\iota") }),
   s({ trig = "kappa"  },      { t("\\kappa") }),
-  s({ trig = "lambda" },      { t("\\lambda") }),
+  s({ trig = "lamb" },      { t("\\lambda") }),
   s({ trig = "mu"     },      { t("\\mu") }),
   s({ trig = "nu"     },      { t("\\nu") }),
   s({ trig = "xi"     },      { t("\\xi") }),
@@ -67,12 +69,12 @@ return {
 
   -- symbols
   as({ trig = "enie"  },      { t("\\~n")    }),
-  as({ trig = "pss"   },      { t("\\plus")  }),
-  as({ trig = "mss"   },      { t("\\minus")  }),
+  as({ trig = "pss"   },      { t("\\plus ")  }),
+  as({ trig = "mss"   },      { t("\\minus ")  }),
 
-  s({ trig = "inf"    },      { t("\\infty") }),
-  s({ trig = "sum"    },      { t("\\sum") }),
-  s({ trig = "prod"   },      { t("\\prod") }),
+  s({ trig = "inf"    },      { t("\\infty ") }),
+  s({ trig = "sum"    },      { t("\\sum ") }),
+  s({ trig = "prod"   },      { t("\\prod ") }),
   
   s({ trig = "oint"   },      { t("\\oint") }),
   s({ trig = "pa"     },      { t("\\partial") }),
@@ -91,7 +93,6 @@ return {
   s({ trig = "cong" },    { t("\\cong") }),
   s({ trig = "equiv" },   { t("\\equiv") }),
   s({ trig = "propto" },  { t("\\propto") }),
-  s({ trig = "inn" },     { t("\\in") }),
   s({ trig = "notin" },   { t("\\notin") }),
   s({ trig = "ni" },      { t("\\ni") }),
  
@@ -118,7 +119,7 @@ return {
   as({ trig = "vdd" },   { t("\\vdots") }),
   
   s({ trig = "ldots" },   { t("\\ldots") }),
-  s({ trig = "cdots" },   { t("\\cdots") }),
+  as({ trig = "cdots" },   { t("\\cdots") }),
   s({ trig = "vdots" },   { t("\\vdots") }),
   s({ trig = "ddots" },   { t("\\ddots") }),
 
@@ -182,7 +183,10 @@ return {
   as({ trig = "tfore"   },    { t("\\therefore")    }),
   as({ trig = "qed"     },    { t("\\blacksquare")  }),
   as({ trig = "empp"    },    { t("\\emptyset") }),
+  as({ trig = "inn"     },    { t("\\in") }),
 
+  as({ trig = "forall"     },    { t("\\forall") }),
+  
   s({ trig = "emptyset" },    { t("\\emptyset") }),
   s({ trig = "exists" },      { t("\\exists") }),
   s({ trig = "forall" },      { t("\\forall") }),
@@ -193,7 +197,7 @@ return {
   as({ trig = "ccap" },      { t("\\cap")      }),
   as({ trig = "ccup" },      { t("\\cup")      }),
   as({ trig = "notin"},     { t("\\notin")    }),
-  as({ trig = "setin"},     { t("\\setin")    }),
+  as({ trig = "setin"},     { t("\\in")    }),
 
   s({ trig = "aleph" },     { t("\\aleph") }),
   s({ trig = "setminus" },  { t("\\setminus") }),
@@ -211,7 +215,7 @@ return {
   -- geometry
   as({ trig = "angg"  },     { t("\\angle")}),
   as({ trig = "trabc" },     { t("\\triangle{A B C}")}),
-  as({ trig = "perp"  },     { t("\\perp")}),
+  --as({ trig = "perp"  },     { t("\\perp")}),
   as({ trig = "noperp"},     { t("\\noperp")}),
 
   s({ trig = "triag"  },     { t("\\triangle") }),
@@ -258,11 +262,17 @@ return {
     t("\\frac{"), i(1), t("}{"), i(2), t("}"), i(0),
   }),
 
+  -- exponente
+  as({ trig = "ee"  },     { t("^{2}") }),
+  as({ trig = "e3"  },     { t("^{3}") }),
+  as({ trig = "e5"  },     { t("^{5}") }),
+  as({ trig = "e7"  },     { t("^{7}") }),
+
   -- squareroot
-  as({ trig = "sqq2"  },     { t("\\sqrt^{2}")       }), 
-  as({ trig = "sqq3"  },     { t("\\sqrt^{3}")       }), 
-  as({ trig = "sqq5"  },     { t("\\sqrt^{5}")       }), 
-  as({ trig = "sqq7"  },     { t("\\sqrt^{7}")       }), 
+  as({ trig = "sqq"  },     { t("\\sqrt^{2}")       }), 
+  as({ trig = "sq3"  },     { t("\\sqrt^{3}")       }), 
+  as({ trig = "sq5"  },     { t("\\sqrt^{5}")       }), 
+  as({ trig = "sq7"  },     { t("\\sqrt^{7}")       }), 
   
   as({ trig = "sqrt" }, {
     t("\\sqrt{"), i(1), t("}"), i(0),
@@ -278,21 +288,21 @@ return {
     i(0),
   }),
 
-  s({ trig = "sq" }, { t("^2") }),
-  s({ trig = "cb" }, { t("^3") }),
+  --as({ trig = "sq" }, { t("^2") }),
+  as({ trig = "cb" }, { t("^3") }),
 
   -- subscript and superscr
-  s({ trig = "^^" }, { t("^{"), i(1), t("}"), i(0) }),
-  s({ trig = "__" }, { t("_{"), i(1), t("}"), i(0) }),
+  as({ trig = "^", wordTrig = false }, { t("^{"), i(1), t("}"), i(0) }),
+  as({ trig = "_", wordTrig = false }, { t("_{"), i(1), t("}"), i(0) }),
 
   -- absolute value
-  s({ trig = "vabs" }, {
-    t("\\left|"), i(1), t("\\right|"), i(0),
+  as({ trig = "vabs" }, {
+    t("\\left| "), i(1), t(" \\right| "), i(0),
   }),
 
   -- norm
-  s({ trig = "norm" }, {
-    t("\\left\\|"), i(1), t("\\right\\|"), i(0),
+  as({ trig = ".norm" }, {
+    t("\\left\\| "), i(1), t(" \\right\\|"), i(0),
   }),
 
   -- Conjunto: setb -> \{ \}
@@ -314,16 +324,19 @@ return {
   as({ trig = "zprime" }, { t("\\z^{prime}"), i(0) }),
   
   -- vectors
-  as({ trig = "ahat"  },  { t("\\hat{a}"), i(0) }),
-  as({ trig = "bhat"  },  { t("\\hat{b}"), i(0) }),
-  as({ trig = "chat"  },  { t("\\hat{c}"), i(0) }),
-  as({ trig = "ihat"  },  { t("\\hat{i}"), i(0) }),
-  as({ trig = "jhat"  },  { t("\\hat{j}"), i(0) }),
-  as({ trig = "khat"  },  { t("\\hat{k}"), i(0) }),
-  as({ trig = "xhat"  },  { t("\\hat{x}"), i(0) }),
-  as({ trig = "yhat"  },  { t("\\hat{y}"), i(0) }),
-  as({ trig = "zhat"  },  { t("\\hat{z}"), i(0) }),
-  
+  as({ trig = "hata"  },  { t("\\hat{a}"), i(0) }),
+  as({ trig = "hatb"  },  { t("\\hat{b}"), i(0) }),
+  as({ trig = "hatc"  },  { t("\\hat{c}"), i(0) }),
+  as({ trig = "hati"  },  { t("\\hat{i}"), i(0) }),
+  as({ trig = "hatj"  },  { t("\\hat{j}"), i(0) }),
+  as({ trig = "hatk"  },  { t("\\hat{k}"), i(0) }),
+  as({ trig = "hatx"  },  { t("\\hat{x}"), i(0) }),
+  as({ trig = "haty"  },  { t("\\hat{y}"), i(0) }),
+  as({ trig = "hatz"  },  { t("\\hat{z}"), i(0) }),
+
+  as({ trig = "hatt" }, { t("\\hat{"), i(1), t("}"), i(0) }),
+
+
   as({ trig = ".cross"  },  { t("\\times"), i(0) }),
 
   s({ trig = "times" }, { t("\\times{"), i(1), t("}"), i(0) }),
@@ -408,15 +421,6 @@ return {
     i(1), t(" &= "), i(2), 
     t({ "", "\\end{align}" }),
     i(0),
-  }),
-
-  -- equation
-  as({ trig = ".eq", condition = lb }, {
-    t({ "\\begin{equation}", "" }),
-    i(1),
-    t({ "", "\\end{equation}" }),
-    i(0),
-    --
   }),
 --
 --

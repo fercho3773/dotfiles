@@ -25,6 +25,9 @@ return {
   s({trig= "double_dollar"  },  { t("$$") }),
 
   -- spanish
+  as({trig= "Trian"  },  { t("Triángulo ") }),
+  as({trig= "trian"  },  { t("triángulo ") }),
+  as({trig= "pitagoras"  },  { t("Pitágoras") }),
 
   -- english
 }
