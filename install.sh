@@ -27,6 +27,7 @@ ln -sfn "$dots/starship.toml" "$conf/starship.toml"
 for x in \
   feh \
   dunst \
+  latexmk \
   mpv \
   nvim \
   tmux \

@@ -1,0 +1,18 @@
+$bibtex_use = 1.5;
+$cleanup_includes_cusdep_generated = 1;
+$cleanup_includes_generated = 1;
+$pdf_mode = 5;
+$max_repeat = 4;
+
+# pdf_mode: 1 pdflatex, 3 lualatex, 5 xelatex
+$pdf_mode = 1;
+$silent = 1;
+$aux_dir = 'temp';
+$out_dir = '.';
+
+$pdflatex = 'pdflatex -interaction=nonstopmode %O %S';
+$lualatex = 'lualatex --shell-escape %O %S';
+
+# SyncTeX
+push(@generated_exts, ("synctex.*"));
+push(@extra_xelatex_options, '-synctex=1') ;
