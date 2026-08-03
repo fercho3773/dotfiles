@@ -186,10 +186,10 @@ vim.pack.add({
 --    src = 'https://github.com/saghen/blink.cmp',
 --    version = 'v1.10.2',
 --},
-{
-    src = 'https://github.com/hrsh7th/nvim-cmp',
-    version = '2ffe79f1f021def8dd1fcd81deb16f1bb0d989f3',
-},
+--{
+--    src = 'https://github.com/hrsh7th/nvim-cmp',
+--    version = '2ffe79f1f021def8dd1fcd81deb16f1bb0d989f3',
+--},
 {
     src = 'https://github.com/nvim-mini/mini.nvim',
     version = 'v0.18.0'
@@ -219,6 +219,56 @@ vim.pack.add({
 --    version = '222c8cc1ad66076c05b7c9d0695781ebe3799d880',
 --}
 --
+{ src = "https://github.com/hrsh7th/nvim-cmp" },
+{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
+{ src = "https://github.com/hrsh7th/cmp-buffer" },
+{ src = "https://github.com/hrsh7th/cmp-path" },
+{ src = "https://github.com/saadparwaiz1/cmp_luasnip" },
+--
+})
+
+local cnip = require("luasnip")
+--
+require("cmp").setup({
+snippet = {
+  expand = function(args)
+    cnip.lsp_expand(args.body)
+  end,
+},
+view = {
+  entries = "native",
+},
+mapping = require("cmp").mapping.preset.insert({
+  ["<Tab>"] = require("cmp").mapping(function(fallback)
+    if require("cmp").visible() then
+      require("cmp").select_next_item()
+    elseif cnip.expand_or_jumpable() then
+      cnip.expand_or_jump()
+    else
+      fallback()
+    end
+  end, { "i", "s" }),
+  ["<S-Tab>"] = require("cmp").mapping(function(fallback)
+    if require("cmp").visible() then
+      require("cmp").select_prev_item()
+    elseif cnip.jumpable(-1) then
+      cnip.jump(-1)
+    else
+      fallback()
+    end
+  end, { "i", "s" }),
+  ["<CR>"] = require("cmp").mapping.confirm({ select = false }),
+  ["<C-e>"] = require("cmp").mapping.abort(),
+}),
+--
+sources = require("cmp").config.sources({
+  { name = "nvim_lsp" },
+  { name = "luasnip" },
+},
+{
+  { name = "buffer" },
+  { name = "path" },
+}),
 })
 
 -- nvchad (ui only)
