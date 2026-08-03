@@ -1,7 +1,7 @@
 # statusbar and binaries
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/statusbar/:$PATH"
-export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
+#export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
 unsetopt PROMPT_SP 2>/dev/null
 
 # Default programs:

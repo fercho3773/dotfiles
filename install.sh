@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env  bash
 
-set euo -pipefail
+set -euo pipefail
 
 dots="$HOME/dotfiles"
 lbin="$HOME/.local/bin"
@@ -11,8 +11,8 @@ mkdir -p "$lbin"
 
 # creates a symlink for each file in lbin
 for file in "$dots/bin"/*; do
-    [ -e "$file" ] || continue
-    ln -sfn "$file" "$lbin/$(basename "$file")"
+  [ -e "$file" ] || continue
+  ln -sfn "$file" "$lbin/$(basename "$file")"
 done
 
 # single files
@@ -34,8 +34,8 @@ for x in \
   zathura \
   zsh
 do
-  mkdir -p "$conf/$x" 
-  ln -sfn "$dots/$x" "$conf/x"
+  mkdir -p "$conf/$x" || echo "fail"
+  ln -sfn "$dots/$x" "$conf/x" | echo "done $x" || echo "fail"
 done
 unset x
 

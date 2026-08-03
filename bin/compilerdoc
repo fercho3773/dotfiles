@@ -1,20 +1,59 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -euo pipefail
+
+# script to compile documents based on its file extension
 
 file="${1}"           # filemame
 ext="${file##*.}"     # file extension
 dir=${file%/*}        # file directory
 base="${file%.*}"     # file w/no ext
 
-#cd "${dir}" || exit "1"
+# functions
+die() {
+  printf '%s\n' "$*" >&2
+  exit 1
+}
+
+needs() {
+ command -v "$1" >/dev/null 2>&1 || die "'$1' not found in PATH"
+}
+
+opens(){
+  needs xdg-open
+  xdg-open "$1" >/dev/null 2>&1 &
+}
+
+[ -f "$file" ] | echo 'Compiling :' || die "'${file}' not found"
 
 case "${ext}" in
-    qmd) quarto render "${file}"
-    ;;
-    py) python "${file}"
-    ;;
-    tex) latexmk -pdf -pvc -auxdir=temp -outdir=. "${file}"
-    ;;
-    typ) typst compile --pdf-standard 1.5 "${file}"
-    ;;
-    *) sed -n '/^#!/s/^#!//p; q' "${file}" | xargs -r -I % "${file}" ;;
+  md|markdown)
+  ;;
+  qmd)
+    needs quarto
+    quarto render "${file}"
+  ;;
+  py) python "${file}"
+  ;;
+  tex)
+    make
+    opens "${base}.pdf"
+  ;;
+  typ)
+    needs typst
+    typst compile --pdf-standard 1.5 "${file}"
+  ;;
+  py) 
+    needs python3
+    python "${file}"
+  ;;
+  Rmd)
+    needs Rscript
+  ;;
+  ipynb)
+    need jupyter
+  ;;
+  *) echo "this file is not supported by script" || die "could not do something"
+  ;;
 esac
+
+
