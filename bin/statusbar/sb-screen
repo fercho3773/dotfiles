@@ -1,4 +1,5 @@
-#!/bin/dash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # current brightness
 curr_brightness=$(cat /sys/class/backlight/*/brightness)

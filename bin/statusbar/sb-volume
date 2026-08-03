@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # statusbar for volume
 vol="$(amixer get Master| awk -F'[][]' '/%/{print $2; exit}' | tr -d '%')"
