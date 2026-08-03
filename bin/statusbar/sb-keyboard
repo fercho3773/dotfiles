@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+curr_brightness=$(cat /sys/class/backlight/*/brightness)
+max_brightness=$(cat /sys/class/backlight/*/max_brightness)
+brightness_per=$((100 * curr_brightness / max_brightness))
+
+case $BLOCK_BUTTON in
+1)  if command -v arandr 2>/dev/null; then arandr else st -e xrandr fi
+;;
+3)  notify-send "Screen Information." \
+  "i need to put some useful screen info here" 
+;;
+esac
+
+echo "sc.${brightness_per}"

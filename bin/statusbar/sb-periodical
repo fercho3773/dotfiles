@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# dwmblocks script to set color temperature using sct
+
+color_temp() {
+xargs -I {} sct {} | awk '{print $2}' | xargs -I {} notify-send 'Temperature set to {}.'
+}
+
+case $(date +%H) in
+0[0-6])   #12am to 6am
+  echo '2800' | color_temp
+;;
+
+0[7-9])  #7am to 9am
+  echo '3200' | color_temp
+;;
+
+1[0-2])   #10am to 12pm
+  echo '3600' | color_temp
+;;
+
+1[2-7])   #1pm to 5pm
+  echo '4000' | color_temp
+;;
+
+1[8-9]|2[0-3]) #6pm to 11pm
+  echo '3200' | color_temp
+;;
+
+*)  exit ;;
+esac
