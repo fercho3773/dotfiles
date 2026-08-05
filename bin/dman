@@ -2,15 +2,13 @@
 set -euo pipefail
 
 # open manpages from dmenu
-manpage=$(man . -k | sed 's|.*/||; s/\.[0-9]$//' | dmenu -l 30 -p "Available manual pages:")
-man_route=$(man -w $manpage)
+#manpage=$(man . -k | dmenu -l 30 -p "Available manual pages:" | awk '{print $1}' | cut -d'(' -f1 | cut -d',' -f1')
+manpage=$(man . -k | dmenu -l 30 -p "Available manual pages:" | awk '{print $1}' | awk '{sub(/[(,].*/, ""); print}')
 
-# compile  and pipe selected man page into zathura
-# open man page in  terminal  
 if [[ $(command -v zathura) && $(command -v groff) ]] then
   notify-send "Viewing manual for $manpage."
-  groff -dpi 200 -Tpdf -man $man_route | zathura -
+  man -w $manpage | xargs -I {} groff -Tpdf -man {} | zathura -
 else
   notify-send "Viewing manual for $manpage."
-  $TERMINAL -e man "$man"
+  $TERMINAL -e man "$(man -w $manpage)"
 fi
