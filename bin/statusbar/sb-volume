@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+#set -euo pipefail
 
 # statusbar for volume
 vol="$(amixer get Master| awk -F'[][]' '/%/{print $2; exit}' | tr -d '%')"
@@ -7,28 +7,24 @@ vmute="$(amixer get Master | grep -oE '\[(on|off)\]' | head -n1)"
 
 # put some cool stuff here
 #audio_stat=
-
-case $BLOCK_BUTTON in
-1) 
-  command -v pavucontrol >/dev/null \
-  && pavucontrol || st -e "alsamixer"
-;;
-3) 
-  notify-send "Audio:" && \
-  notify-send "Audio stuff goes here" || exit
-;;
-esac
+#
+# case $BLOCK_BUTTON in
+# 1) 
+#   command -v pavucontrol >/dev/null \
+#   && pavucontrol || st -e "alsamixer"
+# ;;
+# 3) 
+#   notify-send "Audio:"
+#   notify-send "Audio stuff goes here" || exit
+# ;;
+# esac
 
 # this could be better ...
 if [ "$vmute" = "[off]" ]; then
-    echo "MUTE" && exit
+    echo "MUTE"
 elif [ "$vmute" = "[on]" ]; then
-  if [ "$vol" -le 50 ]; then 
-    echo "v.$vol"
-elif [ "$vol" -le 100 ]; then 
-    echo "V.$vol"
+    echo "v${vol}"
 else
-    echo "X" && 
+    echo "xx" && 
     notify-send "Check sound"
-  fi
 fi

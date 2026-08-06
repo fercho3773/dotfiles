@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-case $BLOCK_BUTTON in
-  1) notify-send "($netinfo)"
-esac
+# case $BLOCK_BUTTON in
+#   1) notify-send "($netinfo)"
+# esac
 
 update() {
     sum=0
