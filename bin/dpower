@@ -22,7 +22,7 @@ case "$chosen" in
         pkill -u "$(whoami)"
         ;;
     "Suspend")
-        slock | sleep 0.1 & $sc suspend
+        slock | sleep 0.25 & $sc suspend
         ;;
     "Lock")
         slock

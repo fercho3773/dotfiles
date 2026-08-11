@@ -1,13 +1,17 @@
+#!/bin/env perl
+
 $bibtex_use = 1.5;
 $cleanup_includes_cusdep_generated = 1;
 $cleanup_includes_generated = 1;
-$pdf_mode = 5;
 $max_repeat = 4;
+
+$warnings_as_errors = 0;
+$show_time = 1;
 
 # pdf_mode: 1 pdflatex, 3 lualatex, 5 xelatex
 $pdf_mode = 1;
 $silent = 1;
-$aux_dir = 'temp';
+$aux_dir = 'build';
 $out_dir = '.';
 
 $pdflatex = 'pdflatex -interaction=nonstopmode %O %S';

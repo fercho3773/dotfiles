@@ -44,12 +44,15 @@ zle -N edit-command-line
 bindkey '^E' edit-command-line
 
 # completion
-autoload -Uz compinit
-zstyle ':completion:' menu select
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots) # include hidden files
+# autoload -Uz compinit
+# zstyle ':completion:' menu select
+# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# zmodload zsh/complist
+# compinit
+# _comp_options+=(globdots) # include hidden files
+
+autoload -U compinit; compinit
+###source ~/somewhere/fzf-tab.plugin.zsh
 
 # Use vim keys in tab complete menu:
 #bindkey -M menuselect 'h' vi-backward-char
@@ -66,6 +69,7 @@ eval "$(starship init zsh)"
 for x in \
   alias \
   fzf \
+  fzf-tab \
   functions \
   env \
   keybindings \
@@ -82,7 +86,8 @@ for x in \
   zsh-autosuggestions/zsh-autosuggestions \
   zsh-syntax-highlighting/zsh-syntax-highlighting \
   zsh-history-substring-search/zsh-history-substring-search \
-  zsh-vi-mode/zsh-vi-mode.plugin
+  zsh-vi-mode/zsh-vi-mode.plugin \
+  zsh-fzf-tab/fzf-tab.plugin
 do
   source "/usr/share/zsh/plugins/$x.zsh"
 done

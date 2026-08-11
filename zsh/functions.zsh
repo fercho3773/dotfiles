@@ -1,14 +1,14 @@
 # functions
 
 # find man pages
-#fman() {
-#    man -k . | 
-#    fzf -q "$1" --prompt='man> ' --preview $'echo {} | 
-#    tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | 
-#    xargs -r man' |
-#    tr -d '()' |
-#    awk '{printf "%s ", $2} {print $1}' |
-#    xargs -r man
+fman() {
+  man . -k | 
+  fzf --prompt='man> ' | 
+  awk '{print $1}' | awk '{sub(/[(,].*/, "");  print}' | 
+  xargs -I {} man -w {} | 
+  xargs -I {} groff -Tpdf -man {} | 
+  zathura -
+}
 
 # vifm set working directory after exit
 vicd()  {
@@ -129,5 +129,4 @@ case "$1" in
 ;;
 esac
 }
-
 

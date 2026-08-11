@@ -35,8 +35,8 @@ case "${ext}" in
   py) python "${file}"
   ;;
   tex)
+    needs latexmk
     make
-    opens "${base}.pdf"
   ;;
   typ)
     needs typst

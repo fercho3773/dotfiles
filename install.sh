@@ -1,5 +1,4 @@
 #!/usr/bin/env  bash
-
 set -euo pipefail
 
 dots="$HOME/dotfiles"
@@ -16,7 +15,8 @@ for file in "$dots/bin"/*; do
 done
 
 # single files
-#ln -sfn "$dots/.asoundrc"     "$HOME/.asoundrc"
+#ln -sfn "$dots/.asoundrc"    "$HOME/.asoundrc"
+ln -sfn "$dots/.ripgreprc"    "$HOME/.ripgreprc"
 ln -sfn "$dots/.xinitrc"      "$HOME/.xinitrc"
 ln -sfn "$dots/.Xresources"   "$HOME/.Xresources"
 ln -sfn "$dots/.zshrc"        "$HOME/.zshrc"

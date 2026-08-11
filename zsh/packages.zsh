@@ -1,7 +1,7 @@
 # xbps helper
 # To do:
 # 1. Add more distros (pacman,dnf,apt,etc)
-# 2. Declare this functions  as variables
+# 2. Declare this packages as variables
 # install_cmd
 # remove_cmd
 # preview_cmd
@@ -15,33 +15,32 @@ die() {
     exit 1
 }
 
-#if [ -x apt ]; then
-#  install_cmd="apt get install"
-#  remove_cmd="apt remove"
-#elif [ -x dnf]; then
+# if [ -x apt ]; then
+#  install="apt get install"
+#  remove="apt remove"
+#  update="apt"
+# elif [ -x dnf]; then
 #  dnf remove
-#elif [ -x pacman]; then
+# elif [ -x pacman]; then
 #  pacman -Syyu
-#elif [ -x xbps]; then
-#  xbps-install
-#  xbps-remove
-#  xbps-query
-#else
+# elif [ -x xbps]; then
+#  intall="xbps-install"
+#  remove="xbps-remove"
+#  update
+#  listpkg=
+# else
 #  echo ""
 #  echo "Package manager is not supported (apt,dnf,pacman or xbps) :(" 
 #  die
-#fi
+# fi
 
 # list manually installed
-pal() { 
-  xpkg -m | column
-}
+pal() { xpkg -m | column -S 1 }
 
 # hold a package
-pam() { 
-  xbps-pkgdb -m $@
-}
+pam() { xbps-pkgdb -m $@ }
 # package cleanup
+
 pac() {
   echo "xbps-remove -yo && xbps-remove -OO && vkpurge rm all" 
   xbps-remove -yo && xbps-remove -OO && vkpurge rm all ; 
@@ -70,10 +69,8 @@ pan() {
 }
 
 # update
-pau() {
-  clear
-  echo ""
-  echo "Update packages (xbps-install -Suy)"
+pau() { 
+  echo "Update (xbps-install -Suy)"
   xbps-install -Suy
 }
 

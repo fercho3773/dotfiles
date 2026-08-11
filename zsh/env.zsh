@@ -28,11 +28,12 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # moor/moar (pager)
  export MOOR="--follow \
-  --colors=256 \
-  --render-unprintable=whitespace \
-  --statusbar=plain \
-  --tab-size=4 \
-  --wrap"
+--colors=256 \
+--render-unprintable=whitespace \
+--statusbar=plain \
+--tab-size=4 \
+--terminal-fg \
+--wrap"
 
 # eza
 #export EZA_STRICT # makes eza error when two command-line options are incompatible

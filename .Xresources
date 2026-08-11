@@ -6,10 +6,10 @@ Xft.rgba:	rgb
 Xft.lcdfilter:	lcddefault
 Xft.dpi: 96
 
-*.font: BlexMono Nerd Font Mono:pixelsize=14:antialias=true
+*.font: BlexMono Nerd Font Mono:pixelsize=15:antialias=true
 st.borderpx: 5
-st.alpha: 0.80
-st.font: BlexMono Nerd Font Mono:pixelsize=18:antialias=true
+st.alpha: 0.85
+st.font: BlexMono Nerd Font Mono:pixelsize=22:antialias=true
 
 !!*background: #011627
 !!*foreground: #cccccc
